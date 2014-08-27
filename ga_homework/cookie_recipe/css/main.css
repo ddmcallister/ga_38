@@ -1,0 +1,20 @@
+article {
+			padding: 0px 30px 0px 30px;
+		}
+h1 {
+	color: purple;
+}
+
+.main-paragraphs {
+	font-size: 14px;
+	color: red;
+	font-weight: bold;
+}
+
+.left-paragraphs {
+	text-align: center;
+}
+
+#testid {
+	color: blue;
+}
