@@ -1,7 +1,38 @@
-header {
-	text-align: center;
-}
+#header {
+	background-image: url("../img/cactus.jpg"); 
+	border: 2px solid;
+	border-radius: 50px;
+	background-repeat: no-repeat;
+	height: 200px;
+	background-position: left;
+	background-color: orange;
+
+
+	}
 
 h1 {
-	font-color: purple;
+	color: purple;
+	background-color: orange;
+}
+
+p {
+	font-size: 20px;
+	background-color: silver;
+}
+
+ul {
+	background-color: aqua;
+}
+
+li {
+	font-size: 35px;
+	}
+
+input {
+	font-size: 40px;
+
+}
+
+button {
+	font-size: 40px;
 }
