@@ -1,3 +1,9 @@
+html {
+
+	position: relative;
+	min-height: 100%;
+}
+
 #header {
 		background-image: url("../img/horiz_border_beardsley.jpg");
 		background-repeat: repeat-x;
@@ -8,6 +14,10 @@
 	background-image: url("../img/horiz_border_beardsley.jpg");
     height: 100px;
    	background-repeat: repeat-x;
+   	position: absolute;
+   	left: 0;
+   	bottom: 0;
+   	width: 100%;
  		}
 
 h1 {
@@ -17,5 +27,6 @@ h1 {
 }
 
 body {
+	margin: 0 0 100px;
 	background-color: silver;
 }
