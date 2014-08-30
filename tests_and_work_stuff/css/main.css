@@ -1,5 +1,4 @@
 html {
-
 	position: relative;
 	min-height: 100%;
 }
@@ -7,18 +6,32 @@ html {
 #header {
 		background-image: url("../img/horiz_border_beardsley.jpg");
 		background-repeat: repeat-x;
-		height: 100px;
+		position: relative;
+		left: -8px;
+		height: 96px;
+		width: 100%;
+		border-style: solid;
+		border-radius: 25px;
 		}
 
-#footer {
-	background-image: url("../img/horiz_border_beardsley.jpg");
-    height: 100px;
-   	background-repeat: repeat-x;
-   	position: absolute;
-   	left: 0;
-   	bottom: 0;
-   	width: 100%;
- 		}
+img {
+	position: fixed;
+	top: 0;
+	right: 0;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-radius: 25px;
+
+	}
+
+#plain_isolde {
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 96px;
+
+}
 
 h1 {
 	text-align: center;
@@ -27,6 +40,19 @@ h1 {
 }
 
 body {
-	margin: 0 0 100px;
+	padding: 0px 8px;
+	margin: 0 0 96px;
 	background-color: silver;
 }
+
+#footer {
+	background-image: url("../img/horiz_border_beardsley.jpg");
+    height: 96px;
+   	background-repeat: repeat-x;
+   	position: absolute;
+   	left: 0;
+   	bottom: 0;
+   	width: 100%;
+   	border-style: solid;
+   	border-radius: 25px;
+ 		}
