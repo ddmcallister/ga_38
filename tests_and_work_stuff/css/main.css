@@ -6,13 +6,8 @@
 
 #footer {
 	background-image: url("../img/horiz_border_beardsley.jpg");
-    position: absolute;
     height: 100px;
-    width: 100%;
    	background-repeat: repeat-x;
-   	bottom: 0;
-   	margin: 8px;
-
  		}
 
 h1 {
