@@ -1,0 +1,97 @@
+html {
+	position: relative;
+	min-height: 100%;
+}
+
+#header {
+		background-image: url("../img/horiz_border_beardsley.jpg");
+		background-repeat: repeat-x;
+		position: relative;
+		left: -8px;
+		height: 96px;
+		width: 100%;
+		border-style: solid;
+		border-radius: 0px 0px 25px 25px;
+		}
+
+img {
+	position: absolute;
+	top: 0;
+	right: 0;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-radius: 25px 0px 25px 25px;
+	}
+
+#plain_isolde {
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 96px;
+}
+
+h1 {
+	text-align: center;
+	font-family: Georgia, Times, serif;
+	margin: 20px 0px 20px 0px;
+}
+
+h2 {
+	text-align: center;
+	font-family: Georgia, Times, serif;
+	margin: 5px 0px 10px 0px; 
+}
+
+h3 {
+	text-align: center;
+	font-family: Georgia, Times, serif;
+	margin: 0px 0px 10px 0px; 
+}
+
+h4 {
+	text-align: center;
+	font-family: Georgia, Times, serif;
+	margin: 0px 0px 20px 0px; 
+}
+
+p {
+
+	font-size: 18px;
+}
+
+body {
+	padding: 0px 8px;
+	margin: 0 0 96px;
+	background-image: url("../img/green_liquidc.jpeg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-color: rgb(139, 189, 191);
+}
+
+a {
+	color: #59E817;
+}
+
+input {
+	font-size: 16px;
+	margin: 36px 8px 36px 0px;
+	padding: 5px;
+}
+
+button {
+	font-size: 24px;
+	margin: 18px 8px;
+}
+
+#footer {
+	background-image: url("../img/horiz_border_beardsley.jpg");
+    height: 96px;
+   	background-repeat: repeat-x;
+   	position: absolute;
+   	left: 0;
+   	bottom: 0;
+   	width: 100%;
+   	border-style: solid;
+   	border-radius: 25px 25px 0px 0px;
+ 		}
