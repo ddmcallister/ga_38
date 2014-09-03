@@ -1,0 +1,28 @@
+body {
+	font-family: 'Lato', sans-serif;
+	margin-left: 20px;
+}
+
+.normal-weight {
+	font-weight: 200;
+}
+
+.fadedfont {
+	color: gray;
+}
+
+h1 {font-size: 40px;}
+
+li {
+	display: inline;
+}
+
+ul {
+	padding-left: 0;
+}
+
+h1 {
+	color: red;
+}
+
+}
