@@ -1,28 +1,49 @@
 body {
-	font-family: 'Lato', sans-serif;
+	font-family: "Lato Thin", Helvetica, sans-serif;
 	margin-left: 20px;
+	font-weight: 100;
 }
 
-.normal-weight {
-	font-weight: 200;
+.font-weight-override {
+	font-weight: 100;
 }
 
-.fadedfont {
-	color: gray;
+h1 {
+	font-size: 50px;
+	color: red;
 }
 
-h1 {font-size: 40px;}
-
-li {
-	display: inline;
+h3 {
+	font-size: 28px;
+	text-align: justify;
 }
+
 
 ul {
 	padding-left: 0;
 }
 
-h1 {
-	color: red;
+li {
+	display: inline;
+	font-size: 24px;
+	padding: 0px 5px 0px 5px;
 }
 
+a {
+	color: silver;
+}
+
+.date {
+	color: silver;
+	font-size: 40px;
+}
+
+h2 {
+	font-size: 36px;
+}
+
+p::first-letter {
+	font-size: 300%;
+	color: silver;
+	vertical-align: text-top;
 }
