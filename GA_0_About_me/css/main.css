@@ -1,7 +1,7 @@
 html {
 	position: relative;
 	min-height: 100%;
-}
+} //lets apply these rules to the <body> rather than to <html>, since all of our markup should be contained by <body>
 
 #header {
 		background-image: url("../img/horiz_border_beardsley.jpg");
@@ -12,7 +12,7 @@ html {
 		width: 100%;
 		border-style: solid;
 		border-radius: 0px 0px 25px 25px;
-		}
+		} //its a minor thing, but formatting with consistent indents makes your code more readable for other devs and yourself. 
 
 img {
 	position: absolute;
@@ -34,7 +34,7 @@ img {
 h1 {
 	text-align: center;
 	font-family: Georgia, Times, serif;
-	margin: 20px 0px 20px 0px;
+	margin: 20px 0px 20px 0px; //awesome use of shorthand properties!
 }
 
 h2 {
@@ -60,6 +60,8 @@ p {
 	font-size: 18px;
 	font-weight: 500;
 }
+
+//love that you are applying rules to elements first, rather than creating classes. 
 
 body {
 	padding: 0px 8px;
