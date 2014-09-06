@@ -1,49 +1,71 @@
 body {
-	font-family: "Lato Thin", Helvetica, sans-serif;
-	margin-left: 20px;
-	font-weight: 100;
+	font-family: 'Lato Thin', Helvetica, sans-serif;
+	font-size: 20px;
+	color: gray;
+	margin-left: 2px;
+	padding-left: 50px;
+	border-left: 2px solid grey;
+}
+
+h1 {
+	font-size: 2.5em;
+	color: red;
+}
+
+h2 {
+	font-size: 1.8em;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+h3 {
+	font-size: 1.4em;
+	text-align: justify;
+}
+
+nav a {
+	padding-left: 0;
+	padding-right: .25em; 
+	font-size: 24px;
+	text-decoration: none;
+	border-bottom: 2px solid silver;
+	text-align: justify;
+	color: silver;
+}
+
+p {
+  background-color: violet;
+  line-height: 120%;
+}
+
+p.introduction:first-letter {
+	font-size: 400%;
+  float: left;
+  width: 1em;
+  background-color: pink;
+	color: grey;
+  padding-right: .14em;
+  padding-bottom: .14em;
+  padding-top: .2em;
+	vertical-align: text-top;
+	line-height: 50%;
+  }
+
+.date {
+	color: silver;
+	font-size: 40px;
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
 .font-weight-override {
 	font-weight: 100;
 }
 
-h1 {
-	font-size: 50px;
+.continue {
 	color: red;
 }
 
-h3 {
-	font-size: 28px;
-	text-align: justify;
-}
-
-
-ul {
-	padding-left: 0;
-}
-
-li {
-	display: inline;
-	font-size: 24px;
-	padding: 0px 5px 0px 5px;
-}
-
-a {
-	color: silver;
-}
-
-.date {
-	color: silver;
-	font-size: 40px;
-}
-
-h2 {
-	font-size: 36px;
-}
-
-p::first-letter {
-	font-size: 300%;
-	color: silver;
-	vertical-align: text-top;
-}
+#mainContent {
+  	margin-top: 50px;
+  }
