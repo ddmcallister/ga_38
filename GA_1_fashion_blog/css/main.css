@@ -1,15 +1,10 @@
 body {
 	font-family: 'Lato Thin', Helvetica, sans-serif;
 	font-size: 20px;
-	color: gray;
-	margin-left: 2px;
+	margin-top: 0px;
+	margin-left: 0px;
 	padding-left: 50px;
-	border-left: 2px solid grey;
-}
-
-h1 {
-	font-size: 2.5em;
-	color: red;
+	border-left: 5px solid rgb(216,216,216);
 }
 
 h2 {
@@ -20,39 +15,26 @@ h2 {
 
 h3 {
 	font-size: 1.4em;
-	text-align: justify;
-}
-
-nav a {
-	padding-left: 0;
-	padding-right: .25em; 
-	font-size: 24px;
-	text-decoration: none;
-	border-bottom: 2px solid silver;
-	text-align: justify;
-	color: silver;
 }
 
 p {
-  background-color: violet;
   line-height: 120%;
 }
 
 p.introduction:first-letter {
 	font-size: 400%;
-  float: left;
-  width: 1em;
-  background-color: pink;
-	color: grey;
-  padding-right: .14em;
-  padding-bottom: .14em;
-  padding-top: .2em;
+  	float: left;
+  	width: 1em;
+	color: rgb(216,216,216);
+  	padding-right: .14em;
+  	padding-bottom: .14em;
+  	padding-top: .2em;
 	vertical-align: text-top;
 	line-height: 50%;
   }
 
 .date {
-	color: silver;
+	color: rgb(216,216,216);
 	font-size: 40px;
 	margin-top: 10px;
 	margin-bottom: 10px;
@@ -63,9 +45,52 @@ p.introduction:first-letter {
 }
 
 .continue {
-	color: red;
+	color: rgb(120,0,0);
+	text-align: right;
+}
+.vertical {
+	width: 1px;
+	color: grey;
+  background-color: grey;
+	height: 2em;
+  margin: 0px;
+  border: 0px;
+	display: inline-block;
+}
+
+#title {
+	padding-top: 1.5em;
+	margin-top: 0;
+	font-size: 2.5em;
+	color: rgb(120,0,0);
+}
+
+#subTitle {
+	font-size: 1.5em;
+}
+
+#headerNav a {
+	padding-left: 0;
+	padding-right: .5em; 
+	font-size: 1.5em;
+	text-decoration: none;
+	border-bottom: 2px solid rgb(216,216,216);
+	color: rgb(216,216,216);
 }
 
 #mainContent {
   	margin-top: 50px;
   }
+
+#footerNav a {
+	padding-left: 0;
+	padding-right: .25em;  
+	font-size: .75em;
+	text-decoration: none;
+	color: rgb(120,0,0);
+}
+
+#copyrightLine {
+	color: rgb(216,216,216);
+	font-size: .75em;
+}
