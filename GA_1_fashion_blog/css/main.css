@@ -1,5 +1,5 @@
 body {
-	font-family: 'Lato Thin', Helvetica, sans-serif;
+	font-family: 'Lato Hairline', Helvetica, sans-serif;
 	font-size: 18px;
 	margin-top: 0px;
 	margin-left: 0px;
@@ -13,39 +13,46 @@ h2 {
 	margin-top: 0px;
 	margin-bottom: .4em;
 	font-weight: 100;
+	color: #383838;
 	}
+
+article {
+	margin-top: 2em;
+	max-width: 900px;
+}
 
 p {
 	line-height: 150%;
-	max-width: 900px;
+	color: #383838;
 	}
 
 hr {
 	border-style: solid;
-	color: #E5E4E2;
-	max-width: 900px;
+	color: #D8D8D8;
 	margin-left: 0;
 	}
 
 p.introduction:first-letter {
-	font-size: 400%;
+	font-size: 600%;
   	float: left;
   	width: 1em;
-	color: #E5E4E2;
-  	padding-right: .14em;
-  	padding-bottom: .14em;
+	color: #D8D8D8;
+  	padding-right: .1em;
+  	padding-bottom: .2em;
   	padding-top: .2em;
-	vertical-align: text-top;
 	line-height: 55%;
   	}
 
 .date {
-	color: rgb(216,216,216);
+	color: #D8D8D8;
 	font-size: 2em;
-	margin-top: 1.4em;
 	margin-bottom: .4em;
 	font-weight: 100;
 	}
+
+.faded {
+	color: #D8D8D8;
+}
 
 .continue {
 	color: #E41B17;
@@ -55,16 +62,17 @@ p.introduction:first-letter {
 
 .vertical {
 	width: 2px;
-	color: #E5E4E2;
-  	background-color: #E5E4E2;
+	color: #D8D8D8;
+  	background-color: #D8D8D8;
 	height: 1em;
  	margin: 0px;
   	border: 0px;
 	display: inline-block;
+	vertical-align: -20%;
 	}
 
 #title {
-	padding-top: 1.2em;
+	padding-top: .45em;
 	margin-top: 0;
 	margin-bottom: 0;
 	font-size: 3em;
@@ -76,6 +84,7 @@ p.introduction:first-letter {
 	font-size: 1.5em;
 	margin-top: .5em;
 	margin-bottom: .75em;
+	color: #383838;;
 }
 
 #headerNav a {
@@ -84,8 +93,7 @@ p.introduction:first-letter {
 	margin-right: .75em;
 	font-size: 1.3em;
 	text-decoration: none;
-	border-bottom: 2px solid rgb(216,216,216);
-	color: rgb(216,216,216);
+	border-bottom: 2px solid #D8D8D8;
 	font-weight: 100;
 	}
 
@@ -94,7 +102,8 @@ p.introduction:first-letter {
   	}
 
 #footer {
-	margin-top: 1em;
+	margin-top: 3.4em;
+	margin-bottom: 4.5em;
 }
 
 #footerNav a {
@@ -106,6 +115,6 @@ p.introduction:first-letter {
 	}
 
 #copyrightLine {
-	color: #E5E4E2;
+	color: #D8D8D8;
 	font-weight: 100;
 	}
