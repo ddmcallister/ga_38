@@ -1,96 +1,111 @@
 body {
 	font-family: 'Lato Thin', Helvetica, sans-serif;
-	font-size: 20px;
+	font-size: 18px;
 	margin-top: 0px;
 	margin-left: 0px;
 	padding-left: 50px;
 	border-left: 5px solid rgb(216,216,216);
-}
+	font-weight: 100;
+	}
 
 h2 {
-	font-size: 1.8em;
-	margin-top: 10px;
-	margin-bottom: 10px;
-}
-
-h3 {
-	font-size: 1.4em;
-}
+	font-size: 2em;
+	margin-top: 0px;
+	margin-bottom: .4em;
+	font-weight: 100;
+	}
 
 p {
-  line-height: 120%;
-}
+	line-height: 150%;
+	max-width: 900px;
+	}
+
+hr {
+	border-style: solid;
+	color: #E5E4E2;
+	max-width: 900px;
+	margin-left: 0;
+	}
 
 p.introduction:first-letter {
 	font-size: 400%;
   	float: left;
   	width: 1em;
-	color: rgb(216,216,216);
+	color: #E5E4E2;
   	padding-right: .14em;
   	padding-bottom: .14em;
   	padding-top: .2em;
 	vertical-align: text-top;
-	line-height: 50%;
-  }
+	line-height: 55%;
+  	}
 
 .date {
 	color: rgb(216,216,216);
-	font-size: 40px;
-	margin-top: 10px;
-	margin-bottom: 10px;
-}
-
-.font-weight-override {
+	font-size: 2em;
+	margin-top: 1.4em;
+	margin-bottom: .4em;
 	font-weight: 100;
-}
+	}
 
 .continue {
-	color: rgb(120,0,0);
+	color: #E41B17;
 	text-align: right;
-}
+	font-weight: 700;
+	}
+
 .vertical {
-	width: 1px;
-	color: grey;
-  background-color: grey;
-	height: 2em;
-  margin: 0px;
-  border: 0px;
+	width: 2px;
+	color: #E5E4E2;
+  	background-color: #E5E4E2;
+	height: 1em;
+ 	margin: 0px;
+  	border: 0px;
 	display: inline-block;
-}
+	}
 
 #title {
-	padding-top: 1.5em;
+	padding-top: 1.2em;
 	margin-top: 0;
-	font-size: 2.5em;
-	color: rgb(120,0,0);
-}
+	margin-bottom: 0;
+	font-size: 3em;
+	color: #E41B17;
+	font-weight: 100;
+	}
 
 #subTitle {
 	font-size: 1.5em;
+	margin-top: .5em;
+	margin-bottom: .75em;
 }
 
 #headerNav a {
+	padding-bottom: .1em;  
 	padding-left: 0;
-	padding-right: .5em; 
-	font-size: 1.5em;
+	margin-right: .75em;
+	font-size: 1.3em;
 	text-decoration: none;
 	border-bottom: 2px solid rgb(216,216,216);
 	color: rgb(216,216,216);
-}
+	font-weight: 100;
+	}
 
 #mainContent {
   	margin-top: 50px;
-  }
+  	}
+
+#footer {
+	margin-top: 1em;
+}
 
 #footerNav a {
 	padding-left: 0;
-	padding-right: .25em;  
-	font-size: .75em;
+	padding-right: .25em;
 	text-decoration: none;
-	color: rgb(120,0,0);
-}
+	color: #E41B17;
+	font-weight: 100;
+	}
 
 #copyrightLine {
-	color: rgb(216,216,216);
-	font-size: .75em;
-}
+	color: #E5E4E2;
+	font-weight: 100;
+	}
