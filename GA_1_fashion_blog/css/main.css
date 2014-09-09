@@ -1,35 +1,37 @@
 body {
-	font-family: 'Lato Hairline', Helvetica, sans-serif;
+	font-family: 'Lato', 'Geneva', sans-serif;
 	font-size: 18px;
 	margin-top: 0px;
+	margin-bottom: 0px;
 	margin-left: 0px;
 	padding-left: 50px;
 	border-left: 5px solid rgb(216,216,216);
-	font-weight: 100;
 	}
 
 h2 {
 	font-size: 2em;
 	margin-top: 0px;
 	margin-bottom: .4em;
-	font-weight: 100;
-	color: #383838;
+	font-weight: 200;
 	}
 
 article {
 	margin-top: 2em;
-	max-width: 900px;
+	max-width: 800px;
 }
 
 p {
 	line-height: 150%;
 	color: #383838;
+	font-weight: 200;
 	}
 
 hr {
-	border-style: solid;
+	border: 0;
 	color: #D8D8D8;
+	background-color: #D8D8D8;
 	margin-left: 0;
+	height: 1px;
 	}
 
 p.introduction:first-letter {
@@ -40,24 +42,31 @@ p.introduction:first-letter {
   	padding-right: .1em;
   	padding-bottom: .2em;
   	padding-top: .2em;
-	line-height: 55%;
+	line-height: 45%;
+	font-weight: 200;
   	}
 
 .date {
 	color: #D8D8D8;
 	font-size: 2em;
-	margin-bottom: .4em;
-	font-weight: 100;
+	margin-bottom: .2em;
+	font-weight: 200;
 	}
 
 .faded {
 	color: #D8D8D8;
 }
 
+.fancyImg {
+	width: 800px;
+	height: auto;
+}
+
 .continue {
 	color: #E41B17;
 	text-align: right;
-	font-weight: 700;
+	font-weight: 900;
+	margin-bottom: 1.4em;
 	}
 
 .vertical {
@@ -72,19 +81,19 @@ p.introduction:first-letter {
 	}
 
 #title {
-	padding-top: .45em;
+	padding-top: 1.1em;
 	margin-top: 0;
 	margin-bottom: 0;
 	font-size: 3em;
 	color: #E41B17;
-	font-weight: 100;
+	font-weight: 300;
 	}
 
 #subTitle {
 	font-size: 1.5em;
-	margin-top: .5em;
+	margin-top: .4em;
 	margin-bottom: .75em;
-	color: #383838;;
+	font-weight: 300;
 }
 
 #headerNav a {
@@ -93,8 +102,8 @@ p.introduction:first-letter {
 	margin-right: .75em;
 	font-size: 1.3em;
 	text-decoration: none;
-	border-bottom: 2px solid #D8D8D8;
-	font-weight: 100;
+	border-bottom: 1px solid #D8D8D8;
+	font-weight: 200;
 	}
 
 #mainContent {
@@ -103,7 +112,7 @@ p.introduction:first-letter {
 
 #footer {
 	margin-top: 3.4em;
-	margin-bottom: 4.5em;
+	padding-bottom: 4.5em;
 }
 
 #footerNav a {
@@ -111,10 +120,10 @@ p.introduction:first-letter {
 	padding-right: .25em;
 	text-decoration: none;
 	color: #E41B17;
-	font-weight: 100;
+	font-weight: 300;
 	}
 
 #copyrightLine {
 	color: #D8D8D8;
-	font-weight: 100;
+	font-weight: 300;
 	}
