@@ -1,3 +1,7 @@
+body {
+  margin-top: 5%;
+}
+
 div {
 	width: 200px;
 	height: 500px;
@@ -5,32 +9,67 @@ div {
 
 }
 
+input {
+  height: 30px;
+  width: 30px;
+  float: right;
+  margin: 5px;
+  
+}
+
 #traffic-light {
 	position: absolute;
 	background-color: yellow;
-	position: middle;
-	margin: 0 auto;
+	margin-left: 20%;
 }
 
 .lights {
 	position: absolute;
 	width: 80%;
 	height: 30%;
-	border: 1px solid;
-	margin: 0 auto;
+	margin-left: 10%;
+  margin-top: 2.5%;
+  border-radius: 90px;
 }
 
 #red-light {
-	top: 3%;
-
+	top: 2.5%;
+  background-color: red;
 }
 
 #yellow-light {
-	top: 36%;
-
+	top: 35%;
+  background-color: orange;
 }
 
 #green-light {
-	top: 69%;
+	top: 67.5%;
+  background-color: green;
+}
 
+.button-box {
+  width: 500px;
+  height: 200px;
+  background-color: greenyellow;
+  position: relative;
+  margin-left: 50%;
+}
+
+.button-line {
+  height: 30%;
+  width: 90%;
+  margin-left: 5%;
+  margin-top: .5%
+}
+
+#red-button {
+  
+}
+
+#yellow-button {
+  
+}
+
+#green-button {
+  
 }
