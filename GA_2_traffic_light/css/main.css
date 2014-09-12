@@ -1,26 +1,25 @@
 body {
-  margin-top: 5%;
+  margin-top: 2em;
+  margin-left: 2em;
 }
 
 div {
 	width: 200px;
 	height: 500px;
 	border: 1px solid;
-
 }
 
-input {
-  height: 30px;
-  width: 30px;
-  float: right;
-  margin: 5px;
-  
+button {
+  height: 30%;
+  width: 90%;
+  margin-left: 5%;
+  margin-top: 1%;
+  font-size: 24px;
 }
 
 #traffic-light {
 	position: absolute;
 	background-color: yellow;
-	margin-left: 20%;
 }
 
 .lights {
@@ -48,18 +47,12 @@ input {
 }
 
 .button-box {
-  width: 500px;
-  height: 200px;
+  width: 300px;
+  height: 150px;
   background-color: greenyellow;
-  position: relative;
-  margin-left: 50%;
-}
-
-.button-line {
-  height: 30%;
-  width: 90%;
-  margin-left: 5%;
-  margin-top: .5%
+  position: absolute;
+  margin-top: 11em;
+  margin-left: 15em;
 }
 
 #red-button {
