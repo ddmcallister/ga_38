@@ -1,0 +1,78 @@
+body {
+  margin: 30px;
+  background: linear-gradient(rgba(0,2,205,.8), rgba(0,2,205,0));
+  background: -webkit-linear-gradient(rgba(0,2,205,.8), rgba(0,2,205,0));
+  background: -moz-linear-gradient(rgba(0,2,205,.8), rgba(0,2,205,0));
+  background-repeat: no-repeat;
+}
+
+div {
+	width: 200px;
+	height: 500px;
+	border: 1px solid;
+}
+
+button {
+  height: 25%;
+  width: 90%;
+  margin-left: 5%;
+  margin-top: 3%;
+  font-size: 26px;
+  letter-spacing: 2px;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+.lights {
+  width: 80%;
+  height: 30%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  border-radius: 90px;
+  /*background-color: dimgray;*/
+}
+
+#traffic-light {
+	position: relative;
+	background-color: yellow;
+  border-radius: 20px;
+}
+
+#button-box {
+  width: 300px;
+  height: 150px;
+  background-color: greenyellow;
+  position: absolute;
+  top: 200px;
+  left: 325px;
+  border-radius: 5px;
+}
+
+#Red {
+  background-color: red;
+}
+
+#Orange {
+  background-color: orange;
+}
+
+#Green {
+  background-color: green;
+}
+
+
+
+#red {
+  color: red;
+}
+
+#orange {
+  color: orange;
+}
+
+#green {
+  color: green;
+}
