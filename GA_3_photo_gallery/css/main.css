@@ -1,0 +1,65 @@
+/*try using display: inline-block to get photo gallery grid effect (as on big human); 
+see this website for tips
+http://designshack.net/articles/css/whats-the-deal-with-display-inline-block/*/
+section {
+	display: inline-block;
+}
+
+div {
+	height: 100px;
+	width: 100px;
+	background-color: dimgray;
+	/*border: solid 1px black;*/
+	display: inline-block;
+  	vertical-align: top;
+    margin-right: -4px;
+}
+
+.thumbnail {
+	height: 100px;
+	width: 100px;
+	background-size: cover;
+}
+
+#mainImg {
+	height: 400px;
+	width: 610px;
+	background-size: cover;
+}
+
+#grid {
+  	text-align: center;
+  	margin-left: 10%;
+}
+
+#left_column {
+	display: block;
+	text-align: left;
+	position: absolute;
+}
+
+#top_row {
+	display: block;
+	text-align: left;
+	position: relative;
+}
+
+#center {
+	height: 400px;
+	width: 610px;
+	background-color: black;
+	position: relative;
+	margin-left: 100px;
+}
+
+#right_column {
+ 	text-align: left;
+ 	position: relative;
+ 	margin-left: -10px;
+}
+
+#bottom_row {
+	display: block;
+	text-align: left;
+	position: relative;
+}
