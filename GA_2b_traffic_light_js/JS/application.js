@@ -19,4 +19,5 @@ var lightsOff = document.getElementsByClassName("lights");
     	arrLights[2].style.backgroundColor = lightOn;
     }
     }
+    
 }

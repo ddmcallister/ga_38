@@ -3,41 +3,46 @@
 	<head>
 		<title>photo gallery</title>
 		<link rel="stylesheet" type="text/css" href="css/main.css">
+		<script type="text/javascript" src="js/application.js"></script>
 	</head>
 	<body>
 		<section id="grid">
     		<span id="top_row">
-    			<div><img class="thumbnail" src ="./img/br_bridge.jpg"></div>
-    			<div><img class="thumbnail" src ="./img/brown_bear.jpg"></div>
-    			<div><img class="thumbnail" src ="./img/night_street.jpg"></div>
-    			<div><img class="thumbnail" src ="./img/smoke_profile.jpg"></div>
-    			<div><img class="thumbnail" src ="./img/empty-track.jpg"></div>
-    			<div><img class="thumbnail" src ="./img/curved_bookshelf.jpg"></div>
-    			<div><img class="thumbnail" src ="./img/camera_nails.jpg"></div>
-    			<div><img class="thumbnail" src ="./img/sheep.jpg"></div>
+    			<div><img class="thumbnail" src ="./img/br_bridge.jpg" onclick = "picClick(23)"></div>
+    			<div><img class="thumbnail" src ="./img/brown_bear.jpg" onclick = "picClick(22)"></div>
+    			<div><img class="thumbnail" src ="./img/night_street.jpg" onclick = "picClick(21)"></div>
+    			<div><img class="thumbnail" src ="./img/smoke_profile.jpg" onclick = "picClick(20)"></div>
+    			<div><img class="thumbnail" src ="./img/empty-track.jpg" onclick = "picClick(19)"></div>
+    			<div><img class="thumbnail" src ="./img/curved_bookshelf.jpg" onclick = "picClick(18)"></div>
+    			<div><img class="thumbnail" src ="./img/camera_nails.jpg" onclick = "picClick(17)"></div>
+    			<div><img class="thumbnail" src ="./img/sheep.jpg" onclick = "picClick(16)"></div>
     		</span>
 			<div id="left_column">
-				<div><img class="thumbnail" src ="./img/taxi_plane.jpg"></div>
-				<div><img class="thumbnail" src ="./img/grass-trek.jpg"></div>
-				<div><img class="thumbnail" src ="./img/lamps.jpeg"></div>
-				<div><img class="thumbnail" src ="./img/sail.jpg"></div>
+				<div><img class="thumbnail" src ="./img/taxi_plane.jpg" onclick = "picClick(15)"></div>
+				<div><img class="thumbnail" src ="./img/grass-trek.jpg" onclick = "picClick(14)"></div>
+				<div><img class="thumbnail" src ="./img/lamps.jpeg" onclick = "picClick(13)"></div>
+				<div><img class="thumbnail" src ="./img/sail.jpg" onclick = "picClick(12)"></div>
 			</div>
 			<div id="center"><img id="mainImg" src ="./img/brown_bear.jpg"></div>
 			<div id="right_column">
-				<div><img class="thumbnail" src ="./img/vined_buildings.jpg"></div>
-				<div><img class="thumbnail" src ="./img/sparkler.jpeg"></div>
-				<div><img class="thumbnail" src ="./img/canal_boats.jpg"></div>
-				<div><img class="thumbnail" src ="./img/gray_water.jpg"></div>
+				<div><img class="thumbnail" src ="./img/vined_buildings.jpg" onclick = "picClick(11)"></div>
+				<div><img class="thumbnail" src ="./img/sparkler_copy.jpg" onclick = "picClick(10)"></div>
+				<div><img class="thumbnail" src ="./img/canal_boats.jpg" onclick = "picClick(9)"></div>
+				<div><img class="thumbnail" src ="./img/gray_water.jpg" onclick = "picClick(8)"></div>
 			</div>
 			<span id="bottom_row">
-				<div><img class="thumbnail" src ="./img/motel_sign.jpg"></div>
-				<div><img class="thumbnail" src ="./img/flock.jpg"></div>
-				<div><img class="thumbnail" src ="./img/shopping_street.jpg"></div>
-				<div><img class="thumbnail" src ="./img/pollen.jpg"></div>
-				<div><img class="thumbnail" src ="./img/viewer.jpg"></div>
-				<div><img class="thumbnail" src ="./img/underground.jpg"></div>
-				<div><img class="thumbnail" src ="./img/underwater.jpg"></div>
-				<div><img class="thumbnail" src ="./img/escalator.jpg"></div>
+				<div><img class="thumbnail" src ="./img/motel_sign.jpg" onclick = "picClick(7)"></div>
+				<div><img class="thumbnail" src ="./img/flock.jpg" onclick = "picClick(6)"></div>
+				<div><img class="thumbnail" src ="./img/shopping_street.jpg" onclick = "picClick(5)"></div>
+				<div><img class="thumbnail" src ="./img/pollen.jpg" onclick = "picClick(4)"></div>
+				<div><img class="thumbnail" src ="./img/viewer.jpg" onclick = "picClick(3)"></div>
+				<div><img class="thumbnail" src ="./img/underground.jpg" onclick = "picClick(2)"></div>
+				<div><img class="thumbnail" src ="./img/underwater.jpg" onclick = "picClick(1)"></div>
+				<div><img class="thumbnail" src ="./img/escalator.jpg" onclick = "picClick(0)"></div>
+			</section>
+			<section id = "control_pos">
+				<span class = "controls">forward</span>
+				<span class = "controls">back</span>
 			</section>
 		</div>
 	</body>
