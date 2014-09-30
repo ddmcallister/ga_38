@@ -3,7 +3,7 @@ var picClick = function(thumbnailCenter) {
 	var startPos = document.getElementsByClassName("thumbnail");
 	var i;
 	for (i=0; i<startPos.length; i++) {	
-		//startPos[i].style.opacity = 0.5;
+		startPos[i].style.opacity = 1;
 		}
 
 var k;

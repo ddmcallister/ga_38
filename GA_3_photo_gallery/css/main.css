@@ -1,8 +1,6 @@
-/*try using display: inline-block to get photo gallery grid effect (as on big human); 
-see this website for tips
-http://designshack.net/articles/css/whats-the-deal-with-display-inline-block/*/
 section {
 	display: inline-block;
+	margin-left: 10%;
 }
 
 div {
@@ -35,6 +33,12 @@ div {
 	margin: 15px;
 }
 
+#control_pos {
+	display: block;
+	margin-top: 25px;
+	text-align: center;
+}
+
 #mainImg {
 	height: 400px;
 	width: 610px;
@@ -42,8 +46,8 @@ div {
 }
 
 #grid {
-  	text-align: center;
-  	margin-left: 10%;
+  	text-align: left;
+  	min-width: 800px;
 }
 
 #left_column {
@@ -61,6 +65,7 @@ div {
 #center {
 	height: 400px;
 	width: 610px;
+	text-align: left;
 	background-color: black;
 	position: relative;
 	margin-left: 100px;
@@ -76,4 +81,60 @@ div {
 	display: block;
 	text-align: left;
 	position: relative;
+}
+
+@media (max-width: 500px) {
+
+	div {
+	height: 25px;
+	width: 25px;
+	margin-right: -4px;
+}
+    
+    .thumbnail {
+		height: 25px;
+		width: 25px;
+    }
+
+	#center {
+		height: 100px;
+		width: 150px;
+		text-align: left;
+		margin-left: 25px;
+		margin-right: 0px;
+	}
+
+	#mainImg {
+		height: 100px;
+		width: 150px;
+	}
+
+	#right_column {
+ 		margin-left: -4px;
+ 		margin-right: 0px;
+ 		text-align: left;
+	}
+
+	#grid {
+  		text-align: left;
+  		margin-left: auto;
+	}
+
+	#top_row {
+		display: block;
+		text-align: left;
+		position: relative;
+	}
+
+	#bottom_row {
+		display: block;
+		text-align: left;
+		position: relative;
+	}
+	
+}
+
+
+
+      
 }
