@@ -49,6 +49,7 @@ div {
 	height: 400px;
 	width: 610px;
 	background-size: cover;
+	overflow: hidden;
 }
 
 #grid {
@@ -75,6 +76,7 @@ div {
 	background-color: black;
 	position: relative;
 	margin-left: 100px;
+	overflow: hidden;
 }
 
 #right_column {
@@ -137,6 +139,8 @@ div {
 		text-align: left;
 		position: relative;
 	}
+
+
 	
 }
 
