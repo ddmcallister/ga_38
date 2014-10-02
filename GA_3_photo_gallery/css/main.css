@@ -20,22 +20,28 @@ div {
 	cursor: pointer;
 }
 
+.thumbnail:hover {
+	opacity: .5;
+}
+
 #control_pos {
 	display: block;
-	margin-top: 25px;
 	text-align: center;
 }
 
 .controls {
 	background-color: gray;
-	width: 100px;
-	height: 25px;
+	width: auto;
+	height: auto;
 	margin: 15px;
+	padding: 15px;
+	border: solid 1px black;
+	cursor: pointer;
 }
 
 #control_pos {
 	display: block;
-	margin-top: 25px;
+	margin: 50px;
 	text-align: center;
 }
 
