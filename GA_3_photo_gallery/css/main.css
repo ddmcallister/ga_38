@@ -1,3 +1,7 @@
+body {
+	padding-top: 50px;
+}
+
 section {
 	display: inline-block;
 	margin-left: 10%;
@@ -6,7 +10,6 @@ section {
 div {
 	height: 100px;
 	width: 100px;
-	background-color: dimgray;
 	display: inline-block;
   	vertical-align: top;
     margin-right: -4px;
@@ -22,11 +25,6 @@ div {
 
 .thumbnail:hover {
 	opacity: .5;
-}
-
-#control_pos {
-	display: block;
-	text-align: center;
 }
 
 .controls {
@@ -93,11 +91,15 @@ div {
 
 @media (max-width: 500px) {
 
+	body {
+	padding-top: 25px;
+	}
+
 	div {
 	height: 25px;
 	width: 25px;
 	margin-right: -4px;
-}
+	}
     
     .thumbnail {
 		height: 25px;
@@ -139,12 +141,22 @@ div {
 		text-align: left;
 		position: relative;
 	}
-
-
 	
-}
+	#control_pos {
+		display: block;
+		margin: 25px 40px;
+		text-align: left;
+	}
 
+	.controls {
+		background-color: gray;
+		font-size: 10px;
+		width: auto;
+		height: auto;
+		margin: 15px 0px;
+		padding: 10px;
+		border: solid 1px black;
+		cursor: pointer;
+	}
 
-
-      
 }
