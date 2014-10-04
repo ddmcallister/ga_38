@@ -1,0 +1,16 @@
+.body {
+
+}
+
+.pl_choice {
+	height: 2em;
+	width: 3em;
+	padding: 1em;
+	margin: 0 auto;
+	background-color: pink;
+	border: solid 1px purple;
+	cursor: pointer;
+	display: inline-block;
+	padding-right: 2em;
+}
+
