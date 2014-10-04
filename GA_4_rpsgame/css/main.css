@@ -1,7 +1,3 @@
-.body {
-
-}
-
 .pl_choice {
 	height: 2em;
 	width: 3em;
@@ -12,5 +8,12 @@
 	cursor: pointer;
 	display: inline-block;
 	padding-right: 2em;
+}
+
+#kitten_button img {
+	height: auto;
+	width: 18em;
+	overflow: hidden;
+	cursor: pointer;
 }
 
