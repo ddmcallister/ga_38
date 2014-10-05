@@ -1,12 +1,3 @@
-/*var compChoice = function() {
-	if (i<=3) {
-		compChoice = "rock";
-	} else if (i<=6) {
-		compChoice = "paper";
-	} else if (i<=9) {
-		compChoice = "scissors";
-	}
-}*/
 var plRock = function() {
 	var i = 0;
 	i = Math.floor(Math.random() * 10);
@@ -16,26 +7,25 @@ var plRock = function() {
 	}
 
 	if(i<=3) {
-		var tieResponse = prompt("Tie! Would you like to record your score?");
-			if (tieResponse == "yes") {
+		var tieResponse = confirm("Tie! Record your score?");
+			if (tieResponse === true) {
   				document.getElementById("tieCount").innerHTML=
   				parseInt(document.getElementById("tieCount").innerHTML,10)+1;
 			}
 	} else if(i<=6) {
-		var loseResponse = prompt("Sorry, you lose! Would you like to record your score?");
-			if (loseResponse == "yes") {
+		var loseResponse = confirm("You lose! Record your score?");
+			if (loseResponse === true) {
   				document.getElementById("loseCount").innerHTML=
   				parseInt(document.getElementById("loseCount").innerHTML,10)+1;
 			}
 	} else if(i<=9) {
-		var winResponse = prompt("You win! Would you like to record your score?");
-			if (winResponse == "yes") {
+		var winResponse = confirm("You win! Record your score?");
+			if (winResponse ===true) {
   				document.getElementById("winCount").innerHTML=
   				parseInt(document.getElementById("winCount").innerHTML,10)+1;
 			}
 		}
 	}
-
 
 var plPaper = function(paper) {
 	var i = 0;
@@ -46,20 +36,20 @@ var plPaper = function(paper) {
 	}
 
 	if(i<=3) {
-		var winResponse = prompt("You win! Would you like to record your score?");
-		if (winResponse == "yes") {
+		var winResponse = confirm("You win! Record your score?");
+		if (winResponse === true) {
   				document.getElementById("winCount").innerHTML=
   				parseInt(document.getElementById("winCount").innerHTML,10)+1;
 			}
 	} else if(i<=6) {
-		var tieResponse = prompt("Tie! Would you like to record your score?");
-		if (tieResponse == "yes") {
+		var tieResponse = confirm("Tie! Record your score?");
+		if (tieResponse === true) {
   				document.getElementById("tieCount").innerHTML=
   				parseInt(document.getElementById("tieCount").innerHTML,10)+1;
 			}
 	} else if(i<=9) {
-		var loseResponse = prompt("Sorry, you lose! Would you like to record your score?");
-		if (loseResponse == "yes") {
+		var loseResponse = confirm("You lose! Record your score?");
+		if (loseResponse === true) {
   				document.getElementById("loseCount").innerHTML=
   				parseInt(document.getElementById("loseCount").innerHTML,10)+1;
 			}
@@ -74,20 +64,20 @@ var plScissors = function(scissors) {
 		i = x;
 	}
 	if(i<=3) {
-		var loseResponse = prompt("Sorry, you lose! Would you like to record your score?");
-		if (loseResponse == "yes") {
+		var loseResponse = confirm("You lose! Record your score?");
+		if (loseResponse ===true) {
   				document.getElementById("loseCount").innerHTML=
   				parseInt(document.getElementById("loseCount").innerHTML,10)+1;
 			}
 	} else if(i<=6) {
-		var winResponse = prompt("You win! Would you like to record your score?");
-		if (winResponse == "yes") {
+		var winResponse = confirm("You win! Record your score?");
+		if (winResponse ===true) {
   				document.getElementById("winCount").innerHTML=
   				parseInt(document.getElementById("winCount").innerHTML,10)+1;
 			}
 	} else if(i<=9) {
-		var tieResponse = prompt("Tie! Would you like to record your score?");
-		if (tieResponse == "yes") {
+		var tieResponse = confirm("Tie! Record your score?");
+		if (tieResponse ===true) {
   				document.getElementById("tieCount").innerHTML=
   				parseInt(document.getElementById("tieCount").innerHTML,10)+1;
 			}
@@ -105,7 +95,6 @@ var kittenMode = function() {
 
 	$(document).ready(function(){
 		console.log(plRock);
-
 	});
 
 	$(document).keydown(function(event) {
@@ -135,22 +124,22 @@ var kittenMode = function() {
 
 			if (plRandomChoice>compChoice) {
 
-				var winResponse = prompt("You win! Record your score?");
-				if (winResponse == "yes") {
+				var winResponse = confirm("You win! Record your score?");
+				if (winResponse ===true) {
   					document.getElementById("winCount").innerHTML=
   					parseInt(document.getElementById("winCount").innerHTML,10)+1;
 				}
 		}
 		else if (plRandomChoice===compChoice) {
-			var tieResponse = prompt("Tie! Record your score?");
-				if (tieResponse == "yes") {
+			var tieResponse = confirm("Tie! Record your score?");
+				if (tieResponse ===true) {
   					document.getElementById("tieCount").innerHTML=
   					parseInt(document.getElementById("tieCount").innerHTML,10)+1;
 				} 
 		}
 		else if (plRandomChoice<compChoice) {
-			var loseResponse = prompt("You lose! Record your score?");
-				if (loseResponse == "yes") {
+			var loseResponse = confirm("You lose! Record your score?");
+				if (loseResponse ===true) {
   					document.getElementById("loseCount").innerHTML=
   					parseInt(document.getElementById("loseCount").innerHTML,10)+1;
 				}
@@ -161,5 +150,11 @@ scoreCompare();
 
 });
 
+}
+
+var zeroScore = function() {
+	document.getElementById("loseCount").innerHTML=0;
+	document.getElementById("tieCount").innerHTML=0;
+	document.getElementById("winCount").innerHTML=0;
 }
 
