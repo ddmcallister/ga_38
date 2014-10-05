@@ -1,19 +1,40 @@
+body {
+	font-family: 'Shadows Into Light', Arial, sans-serif;
+	font-size: 2em;
+	text-align: center;
+}
+
+h2 {
+	margin-bottom: .5em;
+}
+h3 {
+	margin-top: .5em;
+}
+
 .pl_choice {
-	height: 2em;
-	width: 3em;
-	padding: 1em;
-	margin: 0 auto;
-	background-color: pink;
-	border: solid 1px purple;
 	cursor: pointer;
 	display: inline-block;
-	padding-right: 2em;
+	width: 30%;
+	margin-bottom: 1em;
+}
+
+.tallycols {
+	display: inline-block;
+	margin: 0 auto;
+}
+
+#weapons {
+	display: inline-block;
+}
+#kitten_button {
+	opacity: .5;
 }
 
 #kitten_button img {
 	height: auto;
-	width: 18em;
+	width: 50%;
 	overflow: hidden;
 	cursor: pointer;
+	border: 1px solid black;
 }
 
