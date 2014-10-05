@@ -153,7 +153,7 @@ div {
 		font-size: 10px;
 		width: auto;
 		height: auto;
-		margin: 15px 0px;
+		margin: 15px 0; /* 0 doesn't need units in css */
 		padding: 10px;
 		border: solid 1px black;
 		cursor: pointer;
