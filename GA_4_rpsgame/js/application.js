@@ -5,7 +5,6 @@ var plRock = function() {
 		var x = Math.floor(Math.random() * 10);
 		i = x;
 	}
-
 	if(i<=3) {
 		var tieResponse = confirm("Tie! Record your score?");
 			if (tieResponse === true) {
@@ -27,7 +26,7 @@ var plRock = function() {
 		}
 	}
 
-var plPaper = function(paper) {
+var plPaper = function() {
 	var i = 0;
 	i = Math.floor(Math.random() * 10);
 	if(i==0) {
@@ -56,7 +55,7 @@ var plPaper = function(paper) {
 	}
 }
 
-var plScissors = function(scissors) {
+var plScissors = function() {
 	var i = 0;
 	i = Math.floor(Math.random() * 10);
 	if(i==0) {
@@ -87,37 +86,38 @@ var plScissors = function(scissors) {
 //here begins kitten mode
 
 var kittenMode = function() {
-	var plRock = 0;
-	var plpaper = 0;
-	var plScissors = 0;
+	//var plRock = 0;
+	//var plpaper = 0;
+	//var plScissors = 0;
 
 	document.getElementById("kitten_button").style.opacity = 1;
+	$( "KittenMode").unbind( "onclick" );
 
 	$(document).ready(function(){
 		console.log(plRock);
 	});
 
 	$(document).keydown(function(event) {
-		var i = 0;
+		var p = 0;
 		var z=0;
 
     	var code = (event.keyCode || event.which);
     	if(code == 13) {
-        return;
+        	event.preventDefault();;
     	}
 
 		i = Math.floor(Math.random() * 10);
-		if(i==0) {
+		if(p==0) {
 			var x = Math.floor(Math.random() * 10);
-			i = x;	
-		}
-		var plRandomChoice = i;
+			p = x;	
+			}
+		var plRandomChoice = p;
 
 		z = Math.floor(Math.random() * 10);
 		if(z==0) {
-		var y = Math.floor(Math.random() * 10);
-		z = y;
-		}
+			var y = Math.floor(Math.random() * 10);
+			z = y;
+			}
 		var compChoice = z;
 
 		var scoreCompare = function() {	
@@ -129,21 +129,21 @@ var kittenMode = function() {
   					document.getElementById("winCount").innerHTML=
   					parseInt(document.getElementById("winCount").innerHTML,10)+1;
 				}
-		}
-		else if (plRandomChoice===compChoice) {
-			var tieResponse = confirm("Tie! Record your score?");
+			}
+			else if (plRandomChoice===compChoice) {
+				var tieResponse = confirm("Tie! Record your score?");
 				if (tieResponse ===true) {
   					document.getElementById("tieCount").innerHTML=
   					parseInt(document.getElementById("tieCount").innerHTML,10)+1;
 				} 
-		}
-		else if (plRandomChoice<compChoice) {
-			var loseResponse = confirm("You lose! Record your score?");
+			}
+			else if (plRandomChoice<compChoice) {
+				var loseResponse = confirm("You lose! Record your score?");
 				if (loseResponse ===true) {
   					document.getElementById("loseCount").innerHTML=
   					parseInt(document.getElementById("loseCount").innerHTML,10)+1;
 				}
-		}
+			}
 	}	
 
 scoreCompare();
@@ -151,6 +151,8 @@ scoreCompare();
 });
 
 }
+
+//var kittenMode = 0;
 
 var zeroScore = function() {
 	document.getElementById("loseCount").innerHTML=0;
