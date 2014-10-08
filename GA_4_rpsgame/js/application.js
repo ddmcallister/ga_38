@@ -1,3 +1,5 @@
+//need to get everything to refresh
+
 var num = 0;
 function randomNum() {
 	num = Math.floor(Math.random() * 10);
@@ -7,10 +9,10 @@ function randomNum() {
 	}
 }
 
-function plRock() {
-	randomNum();
-	computer = num;
-	console.log(num);
+randomNum();
+var computer = num;
+
+function plRock() { 
 	if (computer <= 3) {
 		tieConfirm();
 	} else if(computer <= 6) {
@@ -20,27 +22,22 @@ function plRock() {
 		}
 	}
 
-var plPaper = function() {
-	randomNum();
-	computer = num;
-	if(computer <= 3) {
+function plPaper() {
+	if(computer < 4) {
 		winConfirm();
-	} else if(computer <= 6) {
+	} else if(computer < 7) {
 		tieConfirm();
-	} else if(computer <= 9) {
+	} else if(computer < 10) {
 		loseConfirm();
 	}
 }
 
-var plScissors = function() {
-	randomNum();
-	computer = num;
-	console.log(computer);
-	if (computer <= 3) {
+function plScissors() {
+	if (computer < 4) {
 		loseConfirm();
-	} else if (computer <= 6) {
+	} else if (computer < 7) {
 		winConfirm();
-	} else if (computer <= 9) {
+	} else if (computer < 10) {
 		tieConfirm();
 	}
 }
@@ -58,43 +55,51 @@ var kittenMode = function() {
 
     	var code = (event.keyCode || event.which);
     	if(code == 13) {
-        	event.preventDefault();;
+        	event.preventDefault();
     	}
 
     	randomNum();
+    	numTranslate();
 		var plRandomChoice = num;
 
     	randomNum();
+    	numTranslate();
 		var compChoice = num;
 
 		console.log(plRandomChoice);
 		console.log(compChoice);
 
-		var scoreCompare = function() {	
-			if (plRandomChoice > compChoice) {
-				winConfirm();
-			} else if (plRandomChoice < compChoice) {	
-				loseConfirm();
-
-			} else if (plRandomChoice<=3 && compChoice<=3) {
-				tieConfirm();
-				return tieConfirm;
-			} else if (plRandomChoice<=6 && compChoice<=6) {
-				tieConfirm();
-				return tieConfirm;
-			} else if (plRandomChoice <=9 && compChoice<=9) {
-				tieConfirm();
-				return tieConfirm;
+		function numTranslate() {
+			if(num > 0 && num < 4) {
+				num = "rock";
+			} else if (num > 3 && num < 7) {
+				num = "paper"; 
+			} else if (num > 6 && num <10) {
+				num = "scissors";
 			}
-			//else if (plRandomChoice > compChoice) {
-				//winConfirm();
-			//} else if (plRandomChoice < compChoice) {	
-				//loseConfirm();
-			//}
-			}	
+		}
+		console.log(plRandomChoice);
+		console.log(compChoice);
 
+	userWins = ["paperrock", "rockscissors", "scissorspaper"];
+	var newPlChoice = plRandomChoice + compChoice;
+	var scoreCompare = function() {	
+			var notice;
+			if (plRandomChoice == compChoice) {
+				notice = tieConfirm();
+			} else if (
+				$.each(userWins, function(index, value) {
+					if(newPlChoice == value) {
+						console.log(newPlChoice);
+					}	
+					})) {
+					notice = winConfirm	
+			} else {
+					notice = loseConfirm;
+				}
+			return notice;
+	}
 scoreCompare();
-
 });
 }
 
@@ -127,3 +132,4 @@ var zeroScore = function() {
 	document.getElementById("tieCount").innerHTML=0;
 	document.getElementById("winCount").innerHTML=0;
 }
+
