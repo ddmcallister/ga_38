@@ -1,5 +1,5 @@
 body {
-	font-family: 'Noto Sans', Arial, sans-serif;
+	font-family: 'Open Sans', Arial, sans-serif;
 }
 
 h1 {
@@ -11,6 +11,7 @@ h1 {
 h3 {
 	font-size: 2em;
 	text-align: center;
+   font-weight: 300;
 }
 
 a {
@@ -29,10 +30,21 @@ div {
 	font-size: 1.5em;
 	padding: 1em;
 	border: 1px solid black;
+   border-radius: 30px;
 	cursor: pointer;
 	width: 50%;
 	text-align: center;
 	margin: .5em auto;
+}
+
+.times:hover {
+   background-color: rgb(255,0,0);
+
+}
+
+.movies {
+   display:block;
+   border: 1px solid black;
 }
 
 #timeSelect {

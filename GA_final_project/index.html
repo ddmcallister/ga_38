@@ -4,6 +4,7 @@
 		<title>final project</title>
 		<link rel="stylesheet" type="text/css" href="css/main.css">
 		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/sha256.js"></script>
 		<script type="text/javascript" src="js/application.js"></script>
 	</head>
 	<body>
@@ -13,22 +14,22 @@
 		<div id="timeSelect">
 			<h3>What's Your Time Frame?</h3>
 				<div>
-					<div class="times" id="half_hour">Can't Hardly Wait</div>
-					<div class="times" id = "hour">Coffee and Cigarettes</div>
-					<div class="times" id = "two_hour">Dinner with Andre</div>
+					<div class="times" id="half_hour" onclick="halfHour()">Can't Hardly Wait!</div>
+					<div class="times" id = "hour" onclick="hour()">Coffee and Cigarettes</div>
+					<div class="times" id = "two_hour" onclick="twoHour()">Dinner with Andre</div>
 				</div>
 		</div>		
 		<div id="resultsDisplay">
-			<div class="movies"></div>
-			<div class="movies"></div>
-			<div class="movies"></div>
-			<div class="movies"></div>
-			<div class="movies"></div>
-			<div class="movies"></div>
-			<div class="movies"></div>
-			<div class="movies"></div>
-			<div class="movies"></div>
-			<div class="movies"></div>
+			<div class="movies" id="result1"></div>
+			<div class="movies" id="result2"></div>
+			<div class="movies" id="result3"></div>
+			<div class="movies" id="result4"></div>
+			<div class="movies" id="result5"></div>
+			<div class="movies" id="result6"></div>
+			<div class="movies" id="result7"></div>
+			<div class="movies" id="result8"></div>
+			<div class="movies" id="result9"></div>
+			<div class="movies" id="result10"></div>
 		</div>
 		<div id="aboutLink">
 			<a href="about.html">About Film Hunter</a>
