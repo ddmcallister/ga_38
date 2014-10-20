@@ -1,7 +1,7 @@
 var num = 0;
 function randomNum() {
 	num = Math.floor(Math.random() * 10);
-	if(num==0) {
+	if(num===0) { // You should really use === to compare with 0. It's more strict.
 		var ridZero = Math.floor(Math.random() * 10);
 		num = ridZero;
 	}
@@ -52,7 +52,7 @@ var scoreCompare = function() {
 	} else {
 		tieConfirm();
 	}
-}
+}; // Missing semicolon
 
 function plRock() {
 	plChoice = "rock";
@@ -64,13 +64,13 @@ function plPaper() {
 	plChoice = "paper";
 	compPick();
 	scoreCompare();
-};
+} // You don't need a semicolon here
 
 function plScissors() {
 	plChoice = "scissors";
 	compPick();
 	scoreCompare();
-};
+}
 
 //kitten mode
 var kittenMode = function() {
@@ -100,7 +100,7 @@ var kittenMode = function() {
 
 		scoreCompare();
 	});
-}
+};
 
 function winConfirm() {
 	var winResponse = confirm("You win! Record your score?");
@@ -131,4 +131,4 @@ var zeroScore = function() {
 	document.getElementById("loseCount").innerHTML=0;
 	document.getElementById("tieCount").innerHTML=0;
 	document.getElementById("winCount").innerHTML=0;
-}
+};
