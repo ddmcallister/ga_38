@@ -25,11 +25,8 @@ function showPosition(position) {
 console.log(coords.lat);
 */
 
-
-var movArray = 0;
+//var movArray = [];
 var movTimesArray = [];
-
-
 
 var d = new Date();
 var y = d.getFullYear();
@@ -44,9 +41,67 @@ var keyDateString = y + "-" + m + "-" + dd;
 var urlDate = "http://data.tmsapi.com/v1/movies/showings?startDate=" + keyDateString + "&zip=10128&api_key=sjesnpx2uhtyac5frfhzfedb";
 
 function halfHour () {
+ 
+  /*var movieTimes = $.ajax({
+    url: urlDate,
+    dataType: 'json',
+    success: function(json) {
+      movTimesArray = movieTimes.responseJSON;
+      for(var globMovTimes = [], i=0; i<movTimesArray.length; i++) {
+        globMovTimes.push([movTimesArray[i].title, movTimesArray[i].showtimes]); 
+        //displays dateTime: "2014-10-20T16:45" 
+      }
+*/
+    var requests = [
+      {url: "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=d8sjemgp8m5mfpyam3cw5ea5&page_limit=50&page=1"},
+      {url: "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=d8sjemgp8m5mfpyam3cw5ea5&page_limit=50&page=2"},
+      {url: "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=d8sjemgp8m5mfpyam3cw5ea5&page_limit=50&page=3"},
+      {url: "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=d8sjemgp8m5mfpyam3cw5ea5&page_limit=50&page=4"},
+      //{url: "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=d8sjemgp8m5mfpyam3cw5ea5&page_limit=50&page=5"}
+    ];
 
-/*  var movies = $.ajax({
-    url: "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=d8sjemgp8m5mfpyam3cw5ea5&page_limit=50",
+    //var rtTitlArr = [];
+    
+    /*var successHandler = function (jsonp) {
+      var movArray = [];
+      movArray = movies.responseJSON.movies;
+      for(var innerMov = [], j=0; j<movArray.length; j++) {  
+        innerMov.push([movArray[j].title, movArray[j].ratings.critics_score, movArray[j].ratings.audience_score]);
+      }
+        rtTitlArr.push(innerMov);
+        //return;
+        console.log(rtTitlArr);
+    }*/
+
+for (k = 0; k< requests.length; k++) {
+  var movies = $.ajax({
+    url: requests[k].url,
+    data: requests[k].json,
+    dataType: 'jsonp',
+    //success: successFun,
+    error: console.log("test3")
+    });
+}
+
+for(i=0; i<requests.length; i++) {    
+  (function successFun(y) {
+    movArray = [];
+    movArray.push(movies)[i] + y;
+    return;
+  }) ()
+  console.log(movArray);
+} 
+
+
+}
+
+
+//for(var innerMov = [], j=0; j<movArray.length; j++) {  
+//innerMov.push([movArray[j].title, movArray[j].ratings.critics_score, movArray[j].ratings.audience_score]);
+
+//below worked 
+    /*var movies = $.ajax({
+    url: "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=d8sjemgp8m5mfpyam3cw5ea5&page_limit=50&page=1",
     dataType: 'jsonp',
     success: function(jsonp) {
       movArray = movies.responseJSON.movies;
@@ -55,73 +110,29 @@ function halfHour () {
       }
 
       console.log(rtTitlArr);
-     
-        //movArray[i].links.alternate is links to reviews
-        //document.getElementById("result1").innerHTML = globMovArr;
 
-    //error: function(e) {
-      //console.log(e.message);
-    
-    }
-  });*/
+*/
 
-
-
-  var movieTimes = $.ajax({
-    url: urlDate,
-      //"http://data.tmsapi.com/v1/movies/showings?startDate=2014-10-20&zip=10128&api_key=sjesnpx2uhtyac5frfhzfedb",
-        //http://data.tmsapi.com/v1/movies/showings?startDate=2014-10-19&lat=41&lng=-74&api_key=sjesnpx2uhtyac5frfhzfedb
-    dataType: 'json',
-    success: function(json) {
-      movTimesArray = movieTimes.responseJSON;
-      for(var globMovTimes = [], i=0; i<movTimesArray.length; i++) {
-        globMovTimes.push([movTimesArray[i].title, movTimesArray[i].showtimes]); 
-      //displays dateTime: "2014-10-20T16:45" 
-      }
-
-    console.log(globMovTimes[0][0]);
-
-    var movies = $.ajax({
-    url: "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=d8sjemgp8m5mfpyam3cw5ea5&page_limit=50",
-    dataType: 'jsonp',
-    success: function(jsonp) {
-      movArray = movies.responseJSON.movies;
-      for(rtTitlArr = [], i=0; i<movArray.length; i++) {
-        rtTitlArr.push([movArray[i].title, movArray[i].ratings.critics_score]);
-      }
-
-      //var comTitlArr = [];
-
-      /*$each(globMovTimes, function() { 
-          if (globMovTimes[0][0] == rtTitlArr[0][0]) {
-           comTitlArr.push([rtTitlArr[0][1], globMovArr[1]]); 
-          }
-
-        });*/
-
-      for(comTitlArr = [], i=0; i<globMovTimes.length; i++) {
+/*      for(var comTitlArr = [], i=0; i<globMovTimes.length; i++) {
         for(j=0; j<rtTitlArr.length; j++) {
           if (globMovTimes[i][0] == rtTitlArr[j][0]) {
            comTitlArr.push([rtTitlArr[j][0], rtTitlArr[j][1], globMovTimes[i][1]]);
          }
        }
-      }
+      };
 
       console.log(rtTitlArr[0][0]);
+      //return rtTitlArr;
       console.log(comTitlArr);
      
         //movArray[i].links.alternate is links to reviews
-      }
+*/
 
-
-
-  });
-
-    },
+/*    },
 
     error: function(e) {
       console.log(e.message);
-    }
+    },
 
 
  });
@@ -129,5 +140,6 @@ function halfHour () {
   //console.log(globMovTimes);
 
 }
+*/
 
 //document.getElementById("result1").innerHTML = globMovArr;

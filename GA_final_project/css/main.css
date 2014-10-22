@@ -8,6 +8,11 @@ h1 {
 	text-align: center;
 }
 
+h2 {
+	font-family: 'Shadows Into Light', Arial, sans-serif;
+	float: right;
+}
+
 h3 {
 	font-size: 2em;
 	text-align: center;
