@@ -1,30 +1,43 @@
 /*if ("geolocation" in navigator) {
   console.log("geolocation is available");
   } else {
-  console.log("geolocation IS NOT available")
+  console.log("geolocation IS NOT available");
 }
 
 var output = document.getElementById("result1");
+
 if (!navigator.geolocation){
   output.innerHTML = "<p>Geolocation is not supported by your browser</p>";
   };
-//for above, give option of entering zip to search?  
 
-var coords = {lat: "", lng: ""};
+function geoFindMe() {
+  function success(position) {
+    var myLoc  = "lat=" + Math.round(position.coords.latitude) + "&lng=" + Math.round(position.coords.longitude);
+    console.log(myLoc);
+    outsideGeo(myLoc);
+  };
 
-if (navigator.geolocation) {
-  navigator.geolocation.getCurrentPosition(showPosition)};
-
-function showPosition(position) {
-  coords.lat = position.coords.latitude;
-  coords.lng = position.coords.longitude;
-  console.log(coords.lat);
-  return coords.lat;
+  function error() {
+    console.log('error');
+  };
+  navigator.geolocation.getCurrentPosition(success, error);
 }
 
-console.log(coords.lat);
+geoFindMe();
+
+function outsideGeo(point) {
+  console.log(point);
+}
+
 */
 
+
+
+
+//need http://data.tmsapi.com/v1/movies/showings?startDate=2014-10-22&lat=41&lng=-74&api_key=sjesnpx2uhtyac5frfhzfedb
+
+
+//date stuff
 //var movArray = [];
 var movTimesArray = [];
 
@@ -38,20 +51,41 @@ var mi = d.getMinutes();
 var dateString = y + "-" + m + "-" + dd + "T" + h + ":" + mi;
 
 var keyDateString = y + "-" + m + "-" + dd;
-var urlDate = "http://data.tmsapi.com/v1/movies/showings?startDate=" + keyDateString + "&zip=10128&api_key=sjesnpx2uhtyac5frfhzfedb";
+var urlDate = "http://data.tmsapi.com/v1/movies/showings?startDate=" + keyDateString + "&zip=10003" + "&api_key=sjesnpx2uhtyac5frfhzfedb";
+console.log(urlDate);
 
 function halfHour () {
  
-  /*var movieTimes = $.ajax({
+//ajax for gracenote
+  var movieTimes = $.ajax({
     url: urlDate,
     dataType: 'json',
     success: function(json) {
       movTimesArray = movieTimes.responseJSON;
-      for(var globMovTimes = [], i=0; i<movTimesArray.length; i++) {
-        globMovTimes.push([movTimesArray[i].title, movTimesArray[i].showtimes]); 
-        //displays dateTime: "2014-10-20T16:45" 
+
+var myMovTimes = [];
+      for(q=0; q<movTimesArray.length; q++) {
+        myMovTimes.push(movTimesArray[q].showtimes);
       }
-*/
+     var myMovName = [];
+        for(z=0; z<movTimesArray.length; z++) {
+                  myMovName.push(movTimesArray[z].title);
+        } 
+
+              //for(var myMovTimes = [], i=0; i<movTimesArray.length; i++) {
+//, movTimesArray[i].showtimes]);
+        //displays dateTime: "2014-10-20T16:45" 
+            console.log(myMovTimes);
+            console.log(myMovName);
+
+      }
+            //console.log(globMovTimes);
+
+ 
+  });
+
+
+//rt stuff
     var requests = [
       {url: "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=d8sjemgp8m5mfpyam3cw5ea5&page_limit=50&page=1"},
       {url: "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=d8sjemgp8m5mfpyam3cw5ea5&page_limit=50&page=2"},
@@ -60,60 +94,62 @@ function halfHour () {
       //{url: "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=d8sjemgp8m5mfpyam3cw5ea5&page_limit=50&page=5"}
     ];
 
-    //var rtTitlArr = [];
+
     
-    /*var successHandler = function (jsonp) {
-      var movArray = [];
-      movArray = movies.responseJSON.movies;
-      for(var innerMov = [], j=0; j<movArray.length; j++) {  
-        innerMov.push([movArray[j].title, movArray[j].ratings.critics_score, movArray[j].ratings.audience_score]);
-      }
-        rtTitlArr.push(innerMov);
-        //return;
-        console.log(rtTitlArr);
-    }*/
+    //var successHandler = function (jsonp) {
+      //var movArray = [];
+      //movArray = movies.responseJSON.movies;
+      //for(var innerMov = [], j=0; j<movArray.length; j++) {  
+        //innerMov.push([movArray[j].title, movArray[j].ratings.critics_score, movArray[j].ratings.audience_score]);
+      //}
+        //rtTitlArr.push(innerMov);
+        //console.log(rtTitlArr);
+    //}
 
 for (k = 0; k< requests.length; k++) {
   var movies = $.ajax({
     url: requests[k].url,
     data: requests[k].json,
     dataType: 'jsonp',
-    //success: successFun,
-    error: console.log("test3")
+    success: function( json ) {
+      //console.log(json); 
+        successFun(json);
+    },
+    error: function(error) {
+        console.log(error)
+    }
     });
 }
 
-for(i=0; i<requests.length; i++) {    
-  (function successFun(y) {
-    movArray = [];
-    movArray.push(movies)[i] + y;
-    return;
-  }) ()
-  console.log(movArray);
-} 
+var moviesArray = [];
 
+function successFun(data) {
+  moviesArray.push.apply(moviesArray, data["movies"]);
+  //console.log("movies ", moviesArray);
+//}
+
+//var rtTitlArr = [];
+
+var innerMov = [];
+function moreMovies(getRating) {
+for(j=0; j<moviesArray.length; j++) {  
+  innerMov.push([moviesArray[j].title, moviesArray[j].ratings.critics_score, moviesArray[j].ratings.audience_score]);
+            console.log(innerMov);
+      }
+            //console.log(innerMov);
+    }
+    moreMovies();
+      //rtTitlArr.push(innerMov);
+        //console.log(rtTitlArr);
+}
 
 }
 
 
-//for(var innerMov = [], j=0; j<movArray.length; j++) {  
-//innerMov.push([movArray[j].title, movArray[j].ratings.critics_score, movArray[j].ratings.audience_score]);
+/*
+to combine results of 2 apis
 
-//below worked 
-    /*var movies = $.ajax({
-    url: "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=d8sjemgp8m5mfpyam3cw5ea5&page_limit=50&page=1",
-    dataType: 'jsonp',
-    success: function(jsonp) {
-      movArray = movies.responseJSON.movies;
-      for(rtTitlArr = [], i=0; i<movArray.length; i++) {
-        rtTitlArr.push([movArray[i].title, movArray[i].ratings.critics_score]);
-      }
-
-      console.log(rtTitlArr);
-
-*/
-
-/*      for(var comTitlArr = [], i=0; i<globMovTimes.length; i++) {
+      for(var comTitlArr = [], i=0; i<globMovTimes.length; i++) {
         for(j=0; j<rtTitlArr.length; j++) {
           if (globMovTimes[i][0] == rtTitlArr[j][0]) {
            comTitlArr.push([rtTitlArr[j][0], rtTitlArr[j][1], globMovTimes[i][1]]);
@@ -127,8 +163,8 @@ for(i=0; i<requests.length; i++) {
      
         //movArray[i].links.alternate is links to reviews
 */
-
-/*    },
+/*
+    },
 
     error: function(e) {
       console.log(e.message);
@@ -142,4 +178,26 @@ for(i=0; i<requests.length; i++) {
 }
 */
 
+
 //document.getElementById("result1").innerHTML = globMovArr;
+
+/*function geoFindMe() {
+  function success(position) {
+    var latitude  = position.coords.latitude;
+    var longitude = position.coords.longitude;
+    console.log(latitude);
+    outsideGeo(latitude);
+  };
+
+  function error() {
+    console.log('error');
+  };
+  navigator.geolocation.getCurrentPosition(success, error);
+}
+
+geoFindMe();
+
+
+function outsideGeo(point) {
+  console.log(point);
+}*/
