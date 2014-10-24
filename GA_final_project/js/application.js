@@ -102,14 +102,26 @@ function halfHour () {
             for(j=0; j<rtMovs.length; j++) {
               if (gnMovs[i][0] == rtMovs[j][0]) {
                 comArr.push([rtMovs[j][0], rtMovs[j][1], rtMovs[j][2], gnMovs[i][1]]);
+              console.log(comArr);
               }
             }
-          }
-          console.log(comArr);
+          }                              
+
+        // function movSort () {
+        // for (l = 0; l < comArr.length; l++) {
+        //     if(comArr[l][1] > 90) {
+        //       console.log(comArr[l][0]);
+        //       //document.getElementById("result1").innerHTML = "comArr[l][0] + ':'' + comArr[l][1]";
+        //     } 
+        // }
+        // }
+        // movSort();
         }
-    }
-    moreMovies();
+      }       
+      moreMovies();
   }
+  //function outsideSuccess()
 }
 
-//document.getElementById("result1").innerHTML = globMovArr;
+
+
