@@ -103,29 +103,29 @@ function halfHour () {
               if (gnMovs[i][0] == moviesArray[j].title) {
                 comArr.push([moviesArray[j].title, moviesArray[j].ratings.critics_score, moviesArray[j].ratings.audience_score, gnMovs[i][1]]);
               console.log(comArr);
+              movSort(comArr);
               }
             }
           } 
       }       
       moreMovies();
   }
+
+  rateArray = [];
+  function movSort (test) {
+    for (l = 0; l < test.length; l++) {
+      if(test[l][1] > 90) {
+        console.log(test[l][0]);
+        rateArray.push.apply(rateArray, [test[l][0], test[l][1], test[l][3]]);
+        console.log(rateArray);
+        //document.getElementById("result1").innerHTML = ;
+      } 
+    //}
+  }
+  movSort();
+
 }
 
-                             
-
-        // function movSort () {
-        // for (l = 0; l < comArr.length; l++) {
-        //     if(comArr[l][1] > 90) {
-        //       console.log(comArr[l][0]);
-        //       //document.getElementById("result1").innerHTML = "comArr[l][0] + ':'' + comArr[l][1]";
-        //     } 
-        // }
-        // }
-        // movSort();
-        //}
-       
-
-  //}
 
 
 
