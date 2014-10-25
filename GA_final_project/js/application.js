@@ -61,12 +61,14 @@ function halfHour () {
       var movTimesArray = movieTimes.responseJSON;
       for(q = 0; q < movTimesArray.length; q++) {
         gnMovs.push([movTimesArray[q].title, movTimesArray[q].showtimes]);
+        //combo(gnMovs);
       }
     },
     error: function(error) {
         console.log(error)
     }
   });
+  console.log(gnMovs);
 
 //rt stuff
   var requests = [
@@ -95,17 +97,21 @@ function halfHour () {
     moviesArray.push.apply(moviesArray, data["movies"]);
       var rtMovs = [];
       function moreMovies(getRating) {
-        for(j=0; j<moviesArray.length; j++) {  
-          rtMovs.push([moviesArray[j].title, moviesArray[j].ratings.critics_score, moviesArray[j].ratings.audience_score]);
           //combining
           for(var comArr = [], i=0; i<gnMovs.length; i++) {
-            for(j=0; j<rtMovs.length; j++) {
-              if (gnMovs[i][0] == rtMovs[j][0]) {
-                comArr.push([rtMovs[j][0], rtMovs[j][1], rtMovs[j][2], gnMovs[i][1]]);
+            for(j=0; j<moviesArray.length; j++) {
+              if (gnMovs[i][0] == moviesArray[j].title) {
+                comArr.push([moviesArray[j].title, moviesArray[j].ratings.critics_score, moviesArray[j].ratings.audience_score, gnMovs[i][1]]);
               console.log(comArr);
               }
             }
-          }                              
+          } 
+      }       
+      moreMovies();
+  }
+}
+
+                             
 
         // function movSort () {
         // for (l = 0; l < comArr.length; l++) {
@@ -116,12 +122,12 @@ function halfHour () {
         // }
         // }
         // movSort();
-        }
-      }       
-      moreMovies();
-  }
-  //function outsideSuccess()
-}
+        //}
+       
+
+  //}
+
+
 
 
 
