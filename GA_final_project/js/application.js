@@ -38,117 +38,125 @@ function outsideGeo(point) {
 
 //need http://data.tmsapi.com/v1/movies/showings?startDate=2014-10-22&lat=41&lng=-74&api_key=sjesnpx2uhtyac5frfhzfedb
 */
+var tDay = new Date();
+var y = tDay.getFullYear();
+var m =  tDay.getMonth() + 1;
+var d = tDay.getDate();
 
-var d = new Date();
-var y = d.getFullYear();
-var m =  d.getMonth() + 1;
-var dd = d.getDate();
-var h = d.getHours();
-var mi = d.getMinutes();
+var complDate = 0;
+function dateConvert (timeBase) {
+  var justYear = timeBase.slice(0, 4);
+  var justDay = timeBase.slice(5, 10);
+  var dtRecomb = justDay + "-" + justYear;
 
-
-var dateString = y + "-" + m + "-" + dd + "T" + h + ":" + (mi);
-var dateStringPreviews = y + "-" + m + "-" + dd + "T" + h + ":" + (mi - 15);
-
-var keyDateString = y + "-" + m + "-" + dd;
-var urlDate = "http://data.tmsapi.com/v1/movies/showings?startDate=" + keyDateString + "&zip=10003&radius=1" + "&api_key=sjesnpx2uhtyac5frfhzfedb";
-
-function halfHour () {
-  //gracenote stuff
-  var gnMovs = []; 
-  var movieTimes = $.ajax({
-    url: urlDate,
-    dataType: 'json',
-    success: function(json) {
-      var movTimesArray = movieTimes.responseJSON;
-      for(q = 0; q < movTimesArray.length; q++) {
-        gnMovs.push([movTimesArray[q].title, movTimesArray[q].showtimes]);
+  var twentyFour = timeBase.slice(11,13);
+  var mins = timeBase.slice(14, 16);
+  var dd = "AM";
+  var twelveHr = 0;
+  function normHr() {
+    if (twentyFour >= 12) {
+      twelveHr = twentyFour-12;
+      dd = "PM";
+      } else if (twentyFour == 0) {
+          twelveHr = 12;
       }
-    },
-
-    error: function(error) {
-        console.log(error)
-    }
-  });
-
-//rt stuff
-  var requests = [
-    {url: "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=d8sjemgp8m5mfpyam3cw5ea5&page_limit=50&page=1"},
-    {url: "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=d8sjemgp8m5mfpyam3cw5ea5&page_limit=50&page=2"},
-    {url: "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=d8sjemgp8m5mfpyam3cw5ea5&page_limit=50&page=3"},
-    {url: "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=d8sjemgp8m5mfpyam3cw5ea5&page_limit=50&page=4"},
-  ];
-
-  for (k = 0; k < requests.length; k++) {
-    var movies = $.ajax({
-      url: requests[k].url,
-      data: requests[k].json,
-      dataType: 'jsonp',
-      success: function( json ) {
-        successFun(json);
-      },
-      error: function(error) {
-        console.log(error)
-      }
-    });
+  }
+  normHr();
+  
+  complDate = twelveHr + ":" + mins + " " + dd + "," + " " + dtRecomb;
   }
 
-  var moviesArray = [];
-  function successFun(data) {
-    moviesArray.push.apply(moviesArray, data["movies"]);
-      function moreMovies() {
-          //combining
-          for(var comArr = [], i=0; i<gnMovs.length; i++) {
-            for(j=0; j<moviesArray.length; j++) {
-              if (gnMovs[i][0] == moviesArray[j].title) {
-                comArr.push([moviesArray[j].title, moviesArray[j].ratings.critics_score, gnMovs[i][1]]);
-              //console.log(comArr);
-              var rateArray = [];
-              function movSort () {
-                for (l = 0; l < comArr.length; l++) {
-                  if(comArr[l][1] > 75) { 
-                    rateArray.push([comArr[l][0], comArr[l][1], comArr[l][2]]);
-                    }
+//gracenote stuff
+var keyDateString = y + "-" + m + "-" + d;
+var urlDate = "http://data.tmsapi.com/v1/movies/showings?startDate=" + keyDateString + "&zip=10003&radius=1" + "&api_key=sjesnpx2uhtyac5frfhzfedb";
+
+var gnMovs = []; 
+var movieTimes = $.ajax({
+  url: urlDate,
+  dataType: 'json',
+  success: function(json) {
+    var movTimesArray = movieTimes.responseJSON;
+    for(q = 0; q < movTimesArray.length; q++) {
+      gnMovs.push([movTimesArray[q].title, movTimesArray[q].showtimes]);
+    }
+  },
+
+  error: function(error) {
+      console.log(error)
+  }
+});
+
+//rt stuff
+var requests = [
+  {url: "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=d8sjemgp8m5mfpyam3cw5ea5&page_limit=50&page=1"},
+  {url: "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=d8sjemgp8m5mfpyam3cw5ea5&page_limit=50&page=2"},
+  {url: "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=d8sjemgp8m5mfpyam3cw5ea5&page_limit=50&page=3"},
+  {url: "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=d8sjemgp8m5mfpyam3cw5ea5&page_limit=50&page=4"},
+];
+
+for (k = 0; k < requests.length; k++) {
+  var movies = $.ajax({
+    url: requests[k].url,
+    data: requests[k].json,
+    dataType: 'jsonp',
+    success: function( json ) {
+      successFun(json);
+    },
+    error: function(error) {
+      console.log(error)
+    }
+  });
+}
+
+var moviesArray = [];
+function successFun(data) {
+  moviesArray.push.apply(moviesArray, data["movies"]);
+}
+
+function halfHour () {
+  function moreMovies() {
+    //combining
+    for(var comArr = [], i=0; i<gnMovs.length; i++) {
+      for(j=0; j<moviesArray.length; j++) {
+        if (gnMovs[i][0] == moviesArray[j].title) {
+          comArr.push([moviesArray[j].title, moviesArray[j].ratings.critics_score, gnMovs[i][1]]);
+          var rateArray = [];
+          function movSort () {
+            for (l = 0; l < comArr.length; l++) {
+              if(comArr[l][1] > 75) { 
+                rateArray.push([comArr[l][0], comArr[l][1], comArr[l][2]]);
+              }
+            }
+          }
+          movSort();
+          for (z=0; z<rateArray.length; z++) {
+            $.each(rateArray, function(index, value) {
+              for (n = 0; n < rateArray[index][2].length; n++) {
+                document.getElementById("first_title").innerHTML = rateArray[z][0];
+                document.getElementById("first_rating").innerHTML = rateArray[z][1];
+                document.getElementById("first_theatre").innerHTML = rateArray[index][2][n].theatre.name;
+                var fixDate = (rateArray[index][2][n].dateTime);
+                dateConvert(fixDate);
+                document.getElementById("first_showtime").innerHTML = complDate;
+                var shTime = new Date(fixDate).getTime();
+                //console.log(shTime);
+                var prevMarg = (new Date().getTime() - (15*60000));
+                //console.log(prevMarg);
+                var halfHr = (new Date().getTime() + (30*60000));
+                //console.log(halfHr);
+                if (shTime > prevMarg && shTime < halfHr) {
+                  //console.log(shTime);
                 }
               }
-                movSort();
-                
-                //console.log(rateArray);
-
-              for (z=0; z<rateArray.length; z++) {
-                $.each(rateArray, function(index, value) {
-                  for (n = 0; n < rateArray[index][2].length; n++) {
-                    //console.log(rateArray[z][0]);
-                    document.getElementById("first_title").innerHTML = rateArray[z][0];
-                    //console.log(rateArray[z][1]);
-                    document.getElementById("first_rating").innerHTML = rateArray[z][1];
-                    //console.log(rateArray[index][2][n].theatre.name);
-                    document.getElementById("first_theatre").innerHTML = rateArray[index][2][n].theatre.name;
-                    //console.log(rateArray[index][2][n].dateTime);
-                    var formatDate = new Date(rateArray[index][2][n].dateTime);
-                    var options = {hour: "2-digit", minute: "2-digit"};
-                    var newFormat = formatDate.toLocaleDateString("en-US", options);  
-                    document.getElementById("first_showtime").innerHTML = newFormat;
-                    var shTime = new Date(rateArray[index][2][n].dateTime).getTime();
-                    //console.log(shTime);
-                    var prevMarg = (new Date().getTime() - (15*60000));
-                    //console.log(prevMarg);
-                    var halfHr = (new Date().getTime() + (30*60000));
-                    //console.log(halfHr);
-                    if (shTime > prevMarg && shTime < halfHr) {
-                      console.log(shTime);
-                    }
-                  }
-                });
-              }
-            }
-            }
-          } 
-      }       
-      moreMovies();
-
+            });
+          }
+        }
+      }
+    } 
+  }       
+  moreMovies();
 }
-}
+
 
 
 
