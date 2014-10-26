@@ -49,10 +49,25 @@ div {
 
 .movies {
    display:block;
+   	width: 100%;
+   	text-align: center;
+	/*height: 9em;*/
 }
 
 #timeSelect {
 	margin-bottom: 3em;
+}
+
+#result1 {
+
+}
+
+#result1:hover {
+	background-image: url(../img/cropped_slash.jpg);
+	background-repeat: no-repeat;	
+	background-position: center;
+	cursor: pointer;
+	background-size: contain;
 }
 
 #aboutLink {

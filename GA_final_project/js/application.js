@@ -43,30 +43,10 @@ var y = tDay.getFullYear();
 var m =  tDay.getMonth() + 1;
 var d = tDay.getDate();
 
-var complDate = 0;
-function dateConvert (timeBase) {
-  var justYear = timeBase.slice(0, 4);
-  var justDay = timeBase.slice(5, 10);
-  var dtRecomb = justDay + "-" + justYear;
+var keyDateString = y + "-" + m + "-" + d;
+var urlDate = "http://data.tmsapi.com/v1/movies/showings?startDate=" + keyDateString + "&zip=10003&radius=1&api_key=sjesnpx2uhtyac5frfhzfedb";
 
-  var twentyFour = timeBase.slice(11,13);
-  var mins = timeBase.slice(14, 16);
-  var dd = "AM";
-  var twelveHr = 0;
-  function normHr() {
-    if (twentyFour >= 12) {
-      twelveHr = twentyFour-12;
-      dd = "PM";
-      } else if (twentyFour == 0) {
-          twelveHr = 12;
-      }
-  }
-  normHr();
-  
-  complDate = twelveHr + ":" + mins + " " + dd + "," + " " + dtRecomb;
-  }
-
-//gracenote stuff
+//gracenote
 var keyDateString = y + "-" + m + "-" + d;
 var urlDate = "http://data.tmsapi.com/v1/movies/showings?startDate=" + keyDateString + "&zip=10003&radius=1" + "&api_key=sjesnpx2uhtyac5frfhzfedb";
 
@@ -86,7 +66,7 @@ var movieTimes = $.ajax({
   }
 });
 
-//rt stuff
+//rottentomatoes
 var requests = [
   {url: "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=d8sjemgp8m5mfpyam3cw5ea5&page_limit=50&page=1"},
   {url: "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=d8sjemgp8m5mfpyam3cw5ea5&page_limit=50&page=2"},
@@ -112,6 +92,29 @@ var moviesArray = [];
 function successFun(data) {
   moviesArray.push.apply(moviesArray, data["movies"]);
 }
+
+//date format modifier for display
+var complDate = 0;
+function dateConvert (timeBase) {
+  //var justYear = timeBase.slice(0, 4);
+  //var justDay = timeBase.slice(5, 10);
+  //var dtRecomb = justDay + "-" + justYear;
+
+  var twentyFour = timeBase.slice(11,13);
+  var mins = timeBase.slice(14, 16);
+  var dd = "AM";
+  var twelveHr = 0;
+  function normHr() {
+    if (twentyFour >= 12) {
+      twelveHr = twentyFour-12;
+      dd = "PM";
+      } else if (twentyFour == 0) {
+          twelveHr = 12;
+      }
+  }
+  normHr();
+  complDate = twelveHr + ":" + mins + " " + dd;
+  }
 
 function halfHour () {
   function moreMovies() {
