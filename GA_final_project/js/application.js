@@ -96,7 +96,6 @@ function halfHour () {
   var moviesArray = [];
   function successFun(data) {
     moviesArray.push.apply(moviesArray, data["movies"]);
-    //var inThirty = [];
       function moreMovies() {
           //combining
           for(var comArr = [], i=0; i<gnMovs.length; i++) {
@@ -113,14 +112,35 @@ function halfHour () {
                 }
               }
                 movSort();
-                console.log(rateArray);
+                
+                //console.log(rateArray);
+
+              for (z=0; z<rateArray.length; z++) {
                 $.each(rateArray, function(index, value) {
-                  if (new Date(rateArray[index][2][0].dateTime) < new Date()) {
-                    console.log("hi!")
-                    document.getElementById("result1").innerHTML = rateArray[index] + rateArray[index][2] + rateArray[index][2][0] +  rateArray[index][2].dateTime;
+                  for (n = 0; n < rateArray[index][2].length; n++) {
+                    //console.log(rateArray[z][0]);
+                    document.getElementById("first_title").innerHTML = rateArray[z][0];
+                    //console.log(rateArray[z][1]);
+                    document.getElementById("first_rating").innerHTML = rateArray[z][1];
+                    //console.log(rateArray[index][2][n].theatre.name);
+                    document.getElementById("first_theatre").innerHTML = rateArray[index][2][n].theatre.name;
+                    //console.log(rateArray[index][2][n].dateTime);
+                    var formatDate = new Date(rateArray[index][2][n].dateTime);
+                    var options = {hour: "2-digit", minute: "2-digit"};
+                    var newFormat = formatDate.toLocaleDateString("en-US", options);  
+                    document.getElementById("first_showtime").innerHTML = newFormat;
+                    var shTime = new Date(rateArray[index][2][n].dateTime).getTime();
+                    //console.log(shTime);
+                    var prevMarg = (new Date().getTime() - (15*60000));
+                    //console.log(prevMarg);
+                    var halfHr = (new Date().getTime() + (30*60000));
+                    //console.log(halfHr);
+                    if (shTime > prevMarg && shTime < halfHr) {
+                      console.log(shTime);
+                    }
                   }
                 });
-
+              }
             }
             }
           } 
@@ -129,7 +149,6 @@ function halfHour () {
 
 }
 }
-        //document.getElementById("result1").innerHTML = ;
 
 
 
