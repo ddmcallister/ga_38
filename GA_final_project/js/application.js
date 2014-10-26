@@ -46,10 +46,12 @@ var dd = d.getDate();
 var h = d.getHours();
 var mi = d.getMinutes();
 
-var dateString = y + "-" + m + "-" + dd + "T" + h + ":" + mi;
+
+var dateString = y + "-" + m + "-" + dd + "T" + h + ":" + (mi);
+var dateStringPreviews = y + "-" + m + "-" + dd + "T" + h + ":" + (mi - 15);
 
 var keyDateString = y + "-" + m + "-" + dd;
-var urlDate = "http://data.tmsapi.com/v1/movies/showings?startDate=" + keyDateString + "&zip=10003" + "&api_key=sjesnpx2uhtyac5frfhzfedb";
+var urlDate = "http://data.tmsapi.com/v1/movies/showings?startDate=" + keyDateString + "&zip=10003&radius=1" + "&api_key=sjesnpx2uhtyac5frfhzfedb";
 
 function halfHour () {
   //gracenote stuff
@@ -61,14 +63,13 @@ function halfHour () {
       var movTimesArray = movieTimes.responseJSON;
       for(q = 0; q < movTimesArray.length; q++) {
         gnMovs.push([movTimesArray[q].title, movTimesArray[q].showtimes]);
-        //combo(gnMovs);
       }
     },
+
     error: function(error) {
         console.log(error)
     }
   });
-  console.log(gnMovs);
 
 //rt stuff
   var requests = [
@@ -95,37 +96,40 @@ function halfHour () {
   var moviesArray = [];
   function successFun(data) {
     moviesArray.push.apply(moviesArray, data["movies"]);
-      var rtMovs = [];
-      function moreMovies(getRating) {
+    //var inThirty = [];
+      function moreMovies() {
           //combining
           for(var comArr = [], i=0; i<gnMovs.length; i++) {
             for(j=0; j<moviesArray.length; j++) {
               if (gnMovs[i][0] == moviesArray[j].title) {
-                comArr.push([moviesArray[j].title, moviesArray[j].ratings.critics_score, moviesArray[j].ratings.audience_score, gnMovs[i][1]]);
-              console.log(comArr);
-              movSort(comArr);
+                comArr.push([moviesArray[j].title, moviesArray[j].ratings.critics_score, gnMovs[i][1]]);
+              //console.log(comArr);
+              var rateArray = [];
+              function movSort () {
+                for (l = 0; l < comArr.length; l++) {
+                  if(comArr[l][1] > 75) { 
+                    rateArray.push([comArr[l][0], comArr[l][1], comArr[l][2]]);
+                    }
+                }
               }
+                movSort();
+                console.log(rateArray);
+                $.each(rateArray, function(index, value) {
+                  if (new Date(rateArray[index][2][0].dateTime) < new Date()) {
+                    console.log("hi!")
+                    document.getElementById("result1").innerHTML = rateArray[index] + rateArray[index][2] + rateArray[index][2][0] +  rateArray[index][2].dateTime;
+                  }
+                });
+
+            }
             }
           } 
       }       
       moreMovies();
-  }
-
-  rateArray = [];
-  function movSort (test) {
-    for (l = 0; l < test.length; l++) {
-      if(test[l][1] > 90) {
-        console.log(test[l][0]);
-        rateArray.push.apply(rateArray, [test[l][0], test[l][1], test[l][3]]);
-        console.log(rateArray);
-        //document.getElementById("result1").innerHTML = ;
-      } 
-    //}
-  }
-  movSort();
 
 }
-
+}
+        //document.getElementById("result1").innerHTML = ;
 
 
 
