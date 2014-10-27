@@ -43,15 +43,28 @@ var y = tDay.getFullYear();
 var m =  tDay.getMonth() + 1;
 var d = tDay.getDate();
 
-var keyDateString = y + "-" + m + "-" + d;
-var urlDate = "http://data.tmsapi.com/v1/movies/showings?startDate=" + keyDateString + "&zip=10003&radius=1&api_key=sjesnpx2uhtyac5frfhzfedb";
+var dThirty = new Date();
+//dThirty.setMinutes(-210); -this is correct, resetting since it's too early now
+dThirty.setMinutes(-40);
+var isoDateThirty = dThirty.toISOString();
+console.log(isoDateThirty);
+var thirtyComp = isoDateThirty.slice(0,16);
+console.log(thirtyComp);
+
+var dPreviews = new Date();
+dPreviews.setMinutes(-255);
+var isoDatePrevs = dPreviews.toISOString();
+console.log(isoDatePrevs);
+
+var prevComp = isoDatePrevs.slice(0,16);
+console.log(prevComp);
 
 //gracenote
 var keyDateString = y + "-" + m + "-" + d;
-var urlDate = "http://data.tmsapi.com/v1/movies/showings?startDate=" + keyDateString + "&zip=10003&radius=1" + "&api_key=sjesnpx2uhtyac5frfhzfedb";
+var urlDate = "http://data.tmsapi.com/v1/movies/showings?startDate=" + keyDateString + "&zip=10003&radius=1&api_key=sjesnpx2uhtyac5frfhzfedb";
 
-$(document).ready(function(){
-  });
+ $(document).ready(function(){
+   });
 
 var gnMovs = []; 
 var movieTimes = $.ajax({
@@ -118,7 +131,8 @@ function dateConvert (timeBase) {
 function halfHour () {
   function moreMovies() {
     //combining
-    console.log(moviesArray);
+    //console.log(moviesArray);
+
     for(var comArr = [], i=0; i<gnMovs.length; i++) {
       for(j=0; j<moviesArray.length; j++) {
         if (gnMovs[i][0] == moviesArray[j].title) {
@@ -132,33 +146,93 @@ function halfHour () {
             }
           }
           movSort();
-          for (z=0; z<rateArray.length; z++) {
+
+          var compArr = [];
+          $.each(rateArray, function(index, value) {
+            if ((rateArray[index][2][0].dateTime) < thirtyComp && (rateArray[index][2][0].dateTime) > prevComp) {
+              console.log("hi!")
+              compArr.push([rateArray[index][0], rateArray[index][1], rateArray[index][2][0].dateTime, rateArray[index][2][0].theatre.name, rateArray[index][3]]);
+            }
+          });
+
+        console.log(compArr);
+
+        var uniqueNames = [];
+        for (h=0; h<compArr.length; h++) {  
+          if ($.inArray(compArr[h][0], uniqueNames) === -1)
+            console.log(compArr[h][0]);
+            uniqueNames.push([compArr[h][0], compArr[h][1], compArr[h][2], compArr[h][3], compArr[h][4]]);
+        }
+      console.log(uniqueNames);
+
+      function find_duplicates(someArr) {
+      var len=someArr.length,
+          out=[],
+          counts={};
+
+      for (var i=0;i<len;i++) {
+        var item = someArr[i];
+        var count = counts[item];
+        counts[item] = counts[item] >= 1 ? counts[item] + 1 : 1;
+      }
+
+      for (var item in counts) {
+        if(counts[item] > 1) continue;
+          out.push(item);
+      }
+
+      console.log(out);
+      }
+
+      find_duplicates(compArr);
+
+
+
+/*                  compArr.sort(function (a, b) {
+                  if (a["1"] > b["1"]) {
+                    return a - b;
+                  }
+                  //  if (a.1 < b.1) {
+                  //    return b - a;
+                  // }
+                  // // // a must be equal to b
+                  // return 0;
+                });*/
+          }
+        }
+      }
+    }       
+  moreMovies();
+}
+
+          /*for (z=0; z<rateArray.length; z++) {
             $.each(rateArray, function(index, value) {
               for (n = 0; n < rateArray[index][2].length; n++) {
-                document.getElementById("first_title").innerHTML = rateArray[z][0];
+                //console.log(rateArray[index][2][n].dateTime);
+
+                var fixDate = (rateArray[index][2][n].dateTime);
+                //dateConvert(fixDate);
+
+                var shTime = new Date(fixDate).getTime();
+                console.log(shTime);
+                  var compArr = [];
+
+                 //if (shTime > new Date().getTime() && shTime < halfHr) {
+                   //compArr.push(rateArray[index][0], rateArray[index][1], rateArray[index][2][n].dateTime);
+                //console.log(compArr);
+                 //}
+                console.log(compArr);
+*/
+
+/*                document.getElementById("first_title").innerHTML = rateArray[z][0];
                 document.getElementById("first_rating").innerHTML = rateArray[z][1];
                 document.getElementById("first_theatre").innerHTML = rateArray[index][2][n].theatre.name;
                 var fixDate = (rateArray[index][2][n].dateTime);
                 dateConvert(fixDate);
-                document.getElementById("first_showtime").innerHTML = complDate;
-                var shTime = new Date(fixDate).getTime();
-                //console.log(shTime);
-                var prevMarg = (new Date().getTime() - (15*60000));
-                //console.log(prevMarg);
-                var halfHr = (new Date().getTime() + (30*60000));
-                //console.log(halfHr);
-                if (shTime > prevMarg && shTime < halfHr) {
-                  //console.log(shTime);
-                }
-              }
-            });
-          }
-        }
-      }
-    } 
-  }       
-  moreMovies();
-}
+                document.getElementById("first_showtime").innerHTML = complDate;*/
+
+
+
 
 
 

@@ -3,7 +3,16 @@ body {
 }
 #header {
 	text-align: center;
+
 }
+#wImg {
+	opacity: 1;
+	background-image: url(../img/cropped_slash_redder.jpg);
+	background-repeat: no-repeat;	
+	background-position: center;
+	background-size: contain;
+}
+
 h1 {
 	font-family: 'Shadows Into Light', Arial, sans-serif;
 	font-size: 6em;
@@ -48,6 +57,7 @@ img {
 .sub {
 	font-size: 1em;
 	margin: 0;
+	font-style: italic;
 	opacity: 0;
 }
 
@@ -59,29 +69,36 @@ img {
 	width: 40%;
 	/*change width at smaller screen sizes, becomes too tall to accomodate sub*/
 	text-align: center;
-	margin: .5em auto;
+	margin: 1em auto;
   	display: block;
   	color: black;
-  	background: linear-gradient(white, white 50%, rgb(255,0,0) 50%, rgb(255,0,0));
+  	background: linear-gradient(white, white 50%, rgb(232,0,0) 50%, rgb(232,0,0));
   	background-size: 100% 202%;
   	-webkit-transition: all 0.2s ease;
   	-webkit-animation: down-bump 0.4s ease;
 }
 
 .times:hover {
+	border: 0px;	
   background-position: 100% 100%;
   -webkit-animation: up-bump 0.4s ease;
 }
 
 .times:hover .lead {
 	margin: 0;
+	color: rgb(160,160,160);
+}
+
+.times:hover .lead span {
+	margin: 0;
 	color: white;
 }
 
 .times:hover .sub {
-	color: rgb(192,192,192);
+	color: rgb(212,212,212);
 	opacity: 1;
 }
+
 
 @-webkit-keyframes up-bump {
   0% { padding-top: 1em; }
@@ -100,31 +117,24 @@ img {
   margin: 0;
 }
 
-.movies_contain {
-	padding-top: 5%;
-	height: 15em;
-	margin: 0;
-}
-
 .movies {
    	display:block;
    	width: 100%;
    	text-align: center;
    	font-size: 1em;
    	margin: 0;
-   	padding: .5em;
 }
 
-
+/*
 #result1:hover {
-	background-image: url(../img/cropped_slash.jpg);
+	background-image: url(../img/cropped_slash_redder.jpg);
 	background-repeat: no-repeat;	
 	background-position: center;
 	cursor: pointer;
 	background-size: contain;
-	font-weight: 800;
+	font-weight: 700;
 }
-
+*/
 #aboutLink {
 	margin-bottom: 3em;
 }
