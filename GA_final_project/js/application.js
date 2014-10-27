@@ -50,6 +50,9 @@ var urlDate = "http://data.tmsapi.com/v1/movies/showings?startDate=" + keyDateSt
 var keyDateString = y + "-" + m + "-" + d;
 var urlDate = "http://data.tmsapi.com/v1/movies/showings?startDate=" + keyDateString + "&zip=10003&radius=1" + "&api_key=sjesnpx2uhtyac5frfhzfedb";
 
+$(document).ready(function(){
+  });
+
 var gnMovs = []; 
 var movieTimes = $.ajax({
   url: urlDate,
@@ -96,10 +99,6 @@ function successFun(data) {
 //date format modifier for display
 var complDate = 0;
 function dateConvert (timeBase) {
-  //var justYear = timeBase.slice(0, 4);
-  //var justDay = timeBase.slice(5, 10);
-  //var dtRecomb = justDay + "-" + justYear;
-
   var twentyFour = timeBase.slice(11,13);
   var mins = timeBase.slice(14, 16);
   var dd = "AM";
@@ -119,15 +118,16 @@ function dateConvert (timeBase) {
 function halfHour () {
   function moreMovies() {
     //combining
+    console.log(moviesArray);
     for(var comArr = [], i=0; i<gnMovs.length; i++) {
       for(j=0; j<moviesArray.length; j++) {
         if (gnMovs[i][0] == moviesArray[j].title) {
-          comArr.push([moviesArray[j].title, moviesArray[j].ratings.critics_score, gnMovs[i][1]]);
+          comArr.push([moviesArray[j].title, moviesArray[j].ratings.critics_score, gnMovs[i][1], moviesArray[j].links.alternate]);
           var rateArray = [];
           function movSort () {
             for (l = 0; l < comArr.length; l++) {
               if(comArr[l][1] > 75) { 
-                rateArray.push([comArr[l][0], comArr[l][1], comArr[l][2]]);
+                rateArray.push([comArr[l][0], comArr[l][1], comArr[l][2], comArr[l][3]]);
               }
             }
           }

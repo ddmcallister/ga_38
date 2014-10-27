@@ -1,17 +1,27 @@
 body {
 	font-family: 'Open Sans', Arial, sans-serif;
 }
-
+#header {
+	text-align: center;
+}
 h1 {
 	font-family: 'Shadows Into Light', Arial, sans-serif;
 	font-size: 6em;
-	text-align: center;
+	display: inline-block;
+	vertical-align: middle;
 }
 
 h2 {
 	font-family: 'Shadows Into Light', Arial, sans-serif;
-	float: right;
+	display: inline-block;
+	font-size: 3em;
+	vertical-align: text-top;
+	margin-top: 1em;
+	margin-left: -4em;
 }
+
+/*at smaller screen sizes, get rid of negative left margin
+ and text align center on h2(align right might look better*/
 
 h3 {
 	font-size: 2em;
@@ -27,40 +37,84 @@ img {
 	vertical-align: middle;
 }
 
-div { 
-	margin: 1.5em;
-}
-
-.times {
-	font-size: 1.5em;
-	padding: 1em;
-	border: 1px solid black;
-   border-radius: 30px;
-	cursor: pointer;
-	width: 50%;
-	text-align: center;
-	margin: .5em auto;
-}
-
-.times:hover {
-   background-color: rgb(255,0,0);
-
-}
-
-.movies {
-   display:block;
-   	width: 100%;
-   	text-align: center;
-	/*height: 9em;*/
-}
-
 #timeSelect {
 	margin-bottom: 3em;
 }
-
-#result1 {
-
+.lead {
+	font-size: 1.5em;
+	margin: .5em 0 0 0;
 }
+
+.sub {
+	font-size: 1em;
+	margin: 0;
+	opacity: 0;
+}
+
+.times {
+	padding: 1em;
+	border: 1px solid black;
+   	border-radius: 30px;
+	cursor: pointer;
+	width: 40%;
+	/*change width at smaller screen sizes, becomes too tall to accomodate sub*/
+	text-align: center;
+	margin: .5em auto;
+  	display: block;
+  	color: black;
+  	background: linear-gradient(white, white 50%, rgb(255,0,0) 50%, rgb(255,0,0));
+  	background-size: 100% 202%;
+  	-webkit-transition: all 0.2s ease;
+  	-webkit-animation: down-bump 0.4s ease;
+}
+
+.times:hover {
+  background-position: 100% 100%;
+  -webkit-animation: up-bump 0.4s ease;
+}
+
+.times:hover .lead {
+	margin: 0;
+	color: white;
+}
+
+.times:hover .sub {
+	color: rgb(192,192,192);
+	opacity: 1;
+}
+
+@-webkit-keyframes up-bump {
+  0% { padding-top: 1em; }
+  50% { padding-top: .5em; }
+  100% { padding-top: 1em; }
+}
+@-webkit-keyframes down-bump {
+  0% { padding-top: 1em; }
+  50% { padding-top: 1.5em; }
+  100% { padding-top: 1em; }
+}
+
+
+.res_container {
+  width: 100%;
+  margin: 0;
+}
+
+.movies_contain {
+	padding-top: 5%;
+	height: 15em;
+	margin: 0;
+}
+
+.movies {
+   	display:block;
+   	width: 100%;
+   	text-align: center;
+   	font-size: 1em;
+   	margin: 0;
+   	padding: .5em;
+}
+
 
 #result1:hover {
 	background-image: url(../img/cropped_slash.jpg);
@@ -68,6 +122,7 @@ div {
 	background-position: center;
 	cursor: pointer;
 	background-size: contain;
+	font-weight: 800;
 }
 
 #aboutLink {

@@ -8,23 +8,32 @@
 	</head>
 	<body>
 		<div id="header">
-			<h1>FILM<img src="./img/big_dog.jpg">HUNTER</h1>
-			<h2>no carrion</h2>
+			<h1>FILM</h1><img src="./img/big_dog.jpg"><h1>HUNTER</h1><h2>no carrion</h2>
 		</div>
 		<div id="timeSelect">
 			<h3>What's Your Time Frame?</h3>
 				<div>
-					<div class="times" id="half_hour" onclick="halfHour()">Can't Hardly Wait!</div>
-					<div class="times" id = "hour" onclick="hour()">Coffee and Cigarettes</div>
-					<div class="times" id = "two_hour" onclick="twoHour()">Dinner with Andre</div>
-				</div>
-		</div>		
-		<div id="resultsDisplay">
-			<div class="movies" id="result1">
-				<div class = "title" id = "first_title"></div>
-				<div class = "rating" id = "first_rating"></div>
-				<div class = "theatre" id = "first_theatre"></div>
-				<div class = "showtime" id = "first_showtime"></div>
+					<div class="times" id="half_hour" onclick="halfHour()">
+						<div class= "lead">Can't Hardly Wait!</div>
+						<div class = "sub">(movies starting in the next half hour)</div>
+					</div>
+					<div class="times" id = "hour" onclick="hour()">
+						<p class= "lead">Coffee and Cigarettes</p>
+						<p class = "sub">(movies starting 1/2 to 1 hour from now)</p>
+					</div>
+					<div class="times" id = "two_hour" onclick="twoHour()">
+						<p class= "lead">Dinner with Andre</p>
+						<p class = "sub">(movies starting 1 - 2 hours from now)</p>
+					</div>
+				</div>	
+		</div>	
+			<div class="res_container" id="result1">
+ 				<div class="movies_contain">
+					<div class="movies" class = "title" id = "first_title"></div>
+					<div class="movies" class = "rating" id = "first_rating"></div>
+					<div class="movies" class = "theatre" id = "first_theatre"></div>
+					<div class="movies" class = "showtime" id = "first_showtime"></div>
+ 				</div>
 			</div>
 			<p class="movies" id="result2">
 				<div class = "title" id = "second_title"></div>
@@ -80,8 +89,6 @@
 				<div class = "theatre" id = "tenth_theatre"></div>
 				<div class = "showtime" id = "tenth_showtime"></div>
 			</p>
-		</div>
-	
 		</div>
 		<div id="aboutLink">
 			<a href="about.html">About Film Hunter</a>
