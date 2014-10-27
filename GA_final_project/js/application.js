@@ -186,6 +186,22 @@ function halfHour () {
 
       find_duplicates(compArr);
 
+      var iDiv = document.createElement("div");
+      //iDiv.id = "first_title";
+      //iDiv.className = "movies";
+      var myDiv = document.getElementByID('result_one');
+      myDiv.appendChild(iDiv);
+      //document.getElementByID("first_title").innerHTML = out;
+
+
+      // // Now create and append to iDiv
+      // var innerDiv = document.createElement('div');
+      // innerDiv.className = 'block-2';
+
+      // // The variable iDiv is still good... Just append to it.
+      // iDiv.appendChild(innerDiv);
+
+
 
 
 /*                  compArr.sort(function (a, b) {
@@ -203,6 +219,7 @@ function halfHour () {
       }
     }       
   moreMovies();
+}}
 }
 
           /*for (z=0; z<rateArray.length; z++) {
