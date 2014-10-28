@@ -4,33 +4,32 @@ var mon =  tDay.getMonth() + 1;
 var day = tDay.getDate();
 
 var dThirty = new Date();
-dThirty.setMinutes(+30);
+dThirty.setMinutes(-210);
 var isoDateThirty = dThirty.toISOString();
 var thirtyComp = isoDateThirty.slice(0,16);
+console.log(thirtyComp);
 
 var dSixty = new Date();
-dSixty.setMinutes(+60);
+dSixty.setMinutes(-180);
 var isoDateSixty = dSixty.toISOString();
 var sixtyComp = isoDateSixty.slice(0,16);
+console.log(sixtyComp);
 
 var dtwoHr = new Date();
-dtwoHr.setMinutes(+120);
-//-120
+dtwoHr.setMinutes(-120);
 var isoDateTwoHr = dtwoHr.toISOString();
 var twoHrComp = isoDateTwoHr.slice(0,16);
 console.log(twoHrComp);
 
 var dPreviews = new Date();
-dPreviews.setMinutes(-15);
-//-255
+dPreviews.setMinutes(-225);
 var isoDatePrevs = dPreviews.toISOString();
 var prevComp = isoDatePrevs.slice(0,16);
 console.log(prevComp);
 
 //gracenote
 var keyDateString = yr + "-" + mon + "-" + day;
-//var urlDate = "http://data.tmsapi.com/v1/movies/showings?startDate=" + keyDateString + "&zip=10003&radius=1&api_key=sjesnpx2uhtyac5frfhzfedb";
-var urlDate = "http://data.tmsapi.com/v1/movies/showings?startDate=2014-10-28&zip=10003&radius=1&api_key=sjesnpx2uhtyac5frfhzfedb";
+var urlDate = "http://data.tmsapi.com/v1/movies/showings?startDate=" + keyDateString + "&zip=10003&radius=1&api_key=sjesnpx2uhtyac5frfhzfedb";
 /* $(document).ready(function(){
    });*/
 
@@ -106,16 +105,6 @@ function dateConvert (timeBase) {
   complDate = twelveHr + ":" + mins + " " + dd;
 }
 
-if (h >= 12) {
-        h = hh-12;
-        dd = "PM";
-    }
-    if (h == 0) {
-        h = 12;
-    }
-
-
-
 //beginning of buttons
 
 function halfHour() {
@@ -145,10 +134,10 @@ function halfHour() {
                 var fixDate = rateArray[index][2][n].dateTime;
                 dateConvert(fixDate);
                 var target = document.getElementById("result_one");
-                  var iDiv = document.createElement("div");
-                  iDiv.id = n;
-                  iDiv.innerHTML = "<a href='" + rateArray[index][3] + "'>" + rateArray[index][0] + "</a>" + "," + " " + "rating:" + " " + rateArray[index][1] + "," + " " + "theatre:" + " " + rateArray[index][2][n].theatre.name + "," + " " + "showtime:" + " " + complDate;
-                  target.appendChild(iDiv);
+                var iDiv = document.createElement("div");
+                iDiv.id = value;
+                iDiv.innerHTML = "<a href='" + rateArray[index][3] + "'>" + rateArray[index][0] + "</a>" + "," + " " + "rating:" + " " + rateArray[index][1] + "," + " " + "theatre:" + " " + rateArray[index][2][n].theatre.name + "," + " " + "showtime:" + " " + complDate;
+                target.appendChild(iDiv);
               }
             }
           });
@@ -178,7 +167,7 @@ function hour() {
 
           console.log(rateArray);
           
-          var compArr = [];
+          //var compArr = [];
           $.each(rateArray, function(index, value) {
             for (n = 0; n < rateArray[index][2].length; n++) {
               if (rateArray[index][2][n].dateTime < sixtyComp && rateArray[index][2][n].dateTime > prevComp) {
@@ -186,6 +175,7 @@ function hour() {
                 dateConvert(fixDate);
                 var target = document.getElementById("result_one");
                   var iDiv = document.createElement("div");
+                  iDiv.innerHTML = " ";
                   iDiv.id = n;
                   iDiv.innerHTML = "<a href='" + rateArray[index][3] + "'>" + rateArray[index][0] + "</a>" + "," + " " + "rating:" + " " + rateArray[index][1] + "," + " " + "theatre:" + " " + rateArray[index][2][n].theatre.name + "," + " " + "showtime:" + " " + complDate;
                   target.appendChild(iDiv);

@@ -1,10 +1,31 @@
 body {
 	font-family: 'Open Sans', Arial, sans-serif;
+	margin-top: 2em;
 }
+
 #header {
 	text-align: center;
-
 }
+
+#subhead {
+	font-size: 2em;
+	line-height: 1.5em;
+}
+
+#main_subhead {
+	font-family: 'Shadows Into Light', Arial, sans-serif;
+	display: inline-block;
+	font-size: 3em;
+	vertical-align: text-top;
+	margin-top: 1em;
+	margin-left: -4em;
+}
+
+#about_body {
+margin-left: 4em;
+margin-right: 4em;
+}
+
 #wImg {
 	opacity: 1;
 	background-image: url(../img/cropped_slash_redder.jpg);
@@ -16,17 +37,48 @@ body {
 h1 {
 	font-family: 'Shadows Into Light', Arial, sans-serif;
 	font-size: 6em;
-	display: inline-block;
 	vertical-align: middle;
+	display: inline-block;
+}
+
+#about_head {
+	margin-bottom: 0;
+	display: inline;
+	color: rgb(232,0,0);
+}
+
+.about_headers {
+	text-align: center;
+	font-size: 3em;
+	color: rgb(232,0,0);
+	margin-bottom: .5em;
 }
 
 h2 {
 	font-family: 'Shadows Into Light', Arial, sans-serif;
-	display: inline-block;
+	font-size: 3em;
+	margin-top: 1em;
+	text-align: center;
+}
+
+h2 #main_subhead {
+	font-family: 'Shadows Into Light', Arial, sans-serif;
 	font-size: 3em;
 	vertical-align: text-top;
 	margin-top: 1em;
 	margin-left: -4em;
+	display: inline-block;
+}
+
+p {
+font-size: 1.5em;
+line-height: 1.5em;
+text-align: center;
+margin-bottom: 1.7em;
+}
+
+.about_highlights {
+	color: rgb(232,0,0);
 }
 
 /*at smaller screen sizes, get rid of negative left margin
@@ -37,6 +89,8 @@ h3 {
 	text-align: center;
    font-weight: 300;
 }
+
+
 
 a {
 	color: red;
@@ -74,7 +128,8 @@ img {
 	/*change width at smaller screen sizes, becomes too tall to accomodate sub*/
 	text-align: center;
 	vertical-align: middle;
-	margin: 1em auto;
+	margin-top: 1em;
+	margin-right: .5em;
   	display: inline-block;
   	color: black;
   	background: linear-gradient(white, white 50%, rgb(232,0,0) 50%, rgb(232,0,0));
@@ -102,7 +157,7 @@ img {
 
 
 .times:hover .sub {
-	color: rgb(212,212,212);
+	color: rgb(200,200,200);
 	opacity: 1;
 }
 
@@ -132,16 +187,6 @@ img {
    	margin: 0;
 }
 
-/*
-#result1:hover {
-	background-image: url(../img/cropped_slash_redder.jpg);
-	background-repeat: no-repeat;	
-	background-position: center;
-	cursor: pointer;
-	background-size: contain;
-	font-weight: 700;
-}
-*/
 #aboutLink {
 	margin-bottom: 3em;
 }
