@@ -60,17 +60,22 @@ img {
 	font-style: italic;
 	opacity: 0;
 }
+#times_contain {
+	text-align: center;
+}
 
 .times {
-	padding: 1em;
+	padding: .5em;
 	border: 1px solid black;
    	border-radius: 30px;
 	cursor: pointer;
-	width: 40%;
+	width: 25%;
+	height: 5em;
 	/*change width at smaller screen sizes, becomes too tall to accomodate sub*/
 	text-align: center;
+	vertical-align: middle;
 	margin: 1em auto;
-  	display: block;
+  	display: inline-block;
   	color: black;
   	background: linear-gradient(white, white 50%, rgb(232,0,0) 50%, rgb(232,0,0));
   	background-size: 100% 202%;

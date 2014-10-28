@@ -1,70 +1,38 @@
-/*if ("geolocation" in navigator) {
-  console.log("geolocation is available");
-  } else {
-  console.log("geolocation IS NOT available");
-}
-
-var output = document.getElementById("result1");
-
-if (!navigator.geolocation){
-  output.innerHTML = "<p>Geolocation is not supported by your browser</p>";
-  };
-
-function geoFindMe() {
-  function success(position) {
-    var myLoc  = "lat=" + Math.round(position.coords.latitude) + "&lng=" + Math.round(position.coords.longitude);
-    console.log(myLoc);
-    outsideGeo(myLoc);
-    //setLoc(myLoc);
-  };
-
-  function error() {
-    console.log('error');
-  };
-  navigator.geolocation.getCurrentPosition(success, error);
-}
-
-geoFindMe();
-
-function outsideGeo(point) {
-  console.log(point);
-}
-
-//var urlDate;
-//function setLoc(point) {
-  //urlDate = "http://data.tmsapi.com/v1/movies/showings?startDate=" + keyDateString + "&zip=10003" + point + "&api_key=sjesnpx2uhtyac5frfhzfedb";
-//}
-//above, working with commented out function above, doesn't work - why?
-
-//need http://data.tmsapi.com/v1/movies/showings?startDate=2014-10-22&lat=41&lng=-74&api_key=sjesnpx2uhtyac5frfhzfedb
-*/
 var tDay = new Date();
-var y = tDay.getFullYear();
-var m =  tDay.getMonth() + 1;
-var d = tDay.getDate();
+var yr = tDay.getFullYear();
+var mon =  tDay.getMonth() + 1;
+var day = tDay.getDate();
 
 var dThirty = new Date();
-//dThirty.setMinutes(-210); -this is correct, resetting since it's too early now
-dThirty.setMinutes(-40);
+dThirty.setMinutes(-210);
 var isoDateThirty = dThirty.toISOString();
-console.log(isoDateThirty);
 var thirtyComp = isoDateThirty.slice(0,16);
-console.log(thirtyComp);
+
+var dSixty = new Date();
+dSixty.setMinutes(-10);
+var isoDateSixty = dSixty.toISOString();
+var sixtyComp = isoDateSixty.slice(0,16);
+
+var dtwoHr = new Date();
+dtwoHr.setMinutes(-40);
+//-120
+var isoDateTwoHr = dtwoHr.toISOString();
+var twoHrComp = isoDateTwoHr.slice(0,16);
+console.log(twoHrComp);
 
 var dPreviews = new Date();
-dPreviews.setMinutes(-255);
+dPreviews.setMinutes(-300);
+//-255
 var isoDatePrevs = dPreviews.toISOString();
-console.log(isoDatePrevs);
-
 var prevComp = isoDatePrevs.slice(0,16);
 console.log(prevComp);
 
 //gracenote
-var keyDateString = y + "-" + m + "-" + d;
+var keyDateString = yr + "-" + mon + "-" + day;
 var urlDate = "http://data.tmsapi.com/v1/movies/showings?startDate=" + keyDateString + "&zip=10003&radius=1&api_key=sjesnpx2uhtyac5frfhzfedb";
 
- $(document).ready(function(){
-   });
+/* $(document).ready(function(){
+   });*/
 
 var gnMovs = []; 
 var movieTimes = $.ajax({
@@ -81,6 +49,8 @@ var movieTimes = $.ajax({
       console.log(error)
   }
 });
+
+console.log(gnMovs);
 
 //rottentomatoes
 var requests = [
@@ -109,6 +79,8 @@ function successFun(data) {
   moviesArray.push.apply(moviesArray, data["movies"]);
 }
 
+console.log(moviesArray);
+
 //date format modifier for display
 var complDate = 0;
 function dateConvert (timeBase) {
@@ -128,17 +100,18 @@ function dateConvert (timeBase) {
   complDate = twelveHr + ":" + mins + " " + dd;
   }
 
-function halfHour () {
+function hour() {
   function moreMovies() {
     //combining
     //console.log(moviesArray);
 
-    for(var comArr = [], i=0; i<gnMovs.length; i++) {
-      for(j=0; j<moviesArray.length; j++) {
+  
+    for(var comArr = [], i = 0; i < gnMovs.length; i++) {
+      for(j = 0; j < moviesArray.length; j++) {
         if (gnMovs[i][0] == moviesArray[j].title) {
           comArr.push([moviesArray[j].title, moviesArray[j].ratings.critics_score, gnMovs[i][1], moviesArray[j].links.alternate]);
           var rateArray = [];
-          function movSort () {
+          function movSort() {
             for (l = 0; l < comArr.length; l++) {
               if(comArr[l][1] > 75) { 
                 rateArray.push([comArr[l][0], comArr[l][1], comArr[l][2], comArr[l][3]]);
@@ -146,107 +119,23 @@ function halfHour () {
             }
           }
           movSort();
-
+          console.log(rateArray);
           var compArr = [];
           $.each(rateArray, function(index, value) {
-            if ((rateArray[index][2][0].dateTime) < thirtyComp && (rateArray[index][2][0].dateTime) > prevComp) {
-              console.log("hi!")
-              compArr.push([rateArray[index][0], rateArray[index][1], rateArray[index][2][0].dateTime, rateArray[index][2][0].theatre.name, rateArray[index][3]]);
-            }
+              for (n = 0; n < rateArray[index][2].length; n++) {
+                if (rateArray[index][2][n].dateTime < twoHrComp && rateArray[index][2][n].dateTime > prevComp) {
+                compArr.push([rateArray[index][0], rateArray[index][1], rateArray[index][2][n].dateTime, rateArray[index][2][n].theatre.name, rateArray[index][3]]);
+              }
+            }          
           });
-
-        console.log(compArr);
-
-        var uniqueNames = [];
-        for (h=0; h<compArr.length; h++) {  
-          if ($.inArray(compArr[h][0], uniqueNames) === -1)
-            console.log(compArr[h][0]);
-            uniqueNames.push([compArr[h][0], compArr[h][1], compArr[h][2], compArr[h][3], compArr[h][4]]);
-        }
-      console.log(uniqueNames);
-
-      function find_duplicates(someArr) {
-      var len=someArr.length,
-          out=[],
-          counts={};
-
-      for (var i=0;i<len;i++) {
-        var item = someArr[i];
-        var count = counts[item];
-        counts[item] = counts[item] >= 1 ? counts[item] + 1 : 1;
-      }
-
-      for (var item in counts) {
-        if(counts[item] > 1) continue;
-          out.push(item);
-      }
-
-      console.log(out);
-      }
-
-      find_duplicates(compArr);
-
-      var iDiv = document.createElement("div");
-      //iDiv.id = "first_title";
-      //iDiv.className = "movies";
-      var myDiv = document.getElementByID('result_one');
-      myDiv.appendChild(iDiv);
-      //document.getElementByID("first_title").innerHTML = out;
-
-
-      // // Now create and append to iDiv
-      // var innerDiv = document.createElement('div');
-      // innerDiv.className = 'block-2';
-
-      // // The variable iDiv is still good... Just append to it.
-      // iDiv.appendChild(innerDiv);
-
-
-
-
-/*                  compArr.sort(function (a, b) {
-                  if (a["1"] > b["1"]) {
-                    return a - b;
-                  }
-                  //  if (a.1 < b.1) {
-                  //    return b - a;
-                  // }
-                  // // // a must be equal to b
-                  // return 0;
-                });*/
+console.log(compArr);
           }
         }
       }
     }       
   moreMovies();
-}}
 }
 
-          /*for (z=0; z<rateArray.length; z++) {
-            $.each(rateArray, function(index, value) {
-              for (n = 0; n < rateArray[index][2].length; n++) {
-                //console.log(rateArray[index][2][n].dateTime);
-
-                var fixDate = (rateArray[index][2][n].dateTime);
-                //dateConvert(fixDate);
-
-                var shTime = new Date(fixDate).getTime();
-                console.log(shTime);
-                  var compArr = [];
-
-                 //if (shTime > new Date().getTime() && shTime < halfHr) {
-                   //compArr.push(rateArray[index][0], rateArray[index][1], rateArray[index][2][n].dateTime);
-                //console.log(compArr);
-                 //}
-                console.log(compArr);
-*/
-
-/*                document.getElementById("first_title").innerHTML = rateArray[z][0];
-                document.getElementById("first_rating").innerHTML = rateArray[z][1];
-                document.getElementById("first_theatre").innerHTML = rateArray[index][2][n].theatre.name;
-                var fixDate = (rateArray[index][2][n].dateTime);
-                dateConvert(fixDate);
-                document.getElementById("first_showtime").innerHTML = complDate;*/
 
 
 
