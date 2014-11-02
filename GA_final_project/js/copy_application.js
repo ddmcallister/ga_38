@@ -30,8 +30,8 @@ console.log(prevComp);
 //gracenote
 var keyDateString = yr + "-" + mon + "-" + day;
 var urlDate = "http://data.tmsapi.com/v1/movies/showings?startDate=" + keyDateString + "&zip=10003&radius=1&api_key=sjesnpx2uhtyac5frfhzfedb";
-/* $(document).ready(function(){
-   });*/
+ $(document).ready(function(){
+   });
 
 var gnMovs = []; 
 var movieTimes = $.ajax({
@@ -108,26 +108,24 @@ function dateConvert (timeBase) {
 //beginning of buttons
 
 function halfHour() {
+//var reset = document.getElementById("result_two");
+//reset.innerHTML = " ";
   function moreMovies() {
     //combines two results
     for(var comArr = [], i = 0; i < gnMovs.length; i++) {
       for(j = 0; j < moviesArray.length; j++) {
         if (gnMovs[i][0] == moviesArray[j].title) {
           comArr.push([moviesArray[j].title, moviesArray[j].ratings.critics_score, gnMovs[i][1], moviesArray[j].links.alternate]);
-          
           var rateArray = [];
           function movSort() {
             for (l = 0; l < comArr.length; l++) {
-              if(comArr[l][1] > 80) { 
+              if(comArr[l][1] > 50) { 
                 rateArray.push([comArr[l][0], comArr[l][1], comArr[l][2], comArr[l][3]]);
               }
             }
           }
           movSort();
-
-          console.log(rateArray);
           
-          var compArr = [];
           $.each(rateArray, function(index, value) {
             for (n = 0; n < rateArray[index][2].length; n++) {
               if (rateArray[index][2][n].dateTime < thirtyComp && rateArray[index][2][n].dateTime > prevComp) {
@@ -135,7 +133,8 @@ function halfHour() {
                 dateConvert(fixDate);
                 var target = document.getElementById("result_one");
                 var iDiv = document.createElement("div");
-                iDiv.id = value;
+                //iDiv.innerHTML = " ";
+                iDiv.id = n;
                 iDiv.innerHTML = "<a href='" + rateArray[index][3] + "'>" + rateArray[index][0] + "</a>" + "," + " " + "rating:" + " " + rateArray[index][1] + "," + " " + "theatre:" + " " + rateArray[index][2][n].theatre.name + "," + " " + "showtime:" + " " + complDate;
                 target.appendChild(iDiv);
               }
@@ -158,24 +157,21 @@ function hour() {
           var rateArray = [];
           function movSort() {
             for (l = 0; l < comArr.length; l++) {
-              if(comArr[l][1] > 80) { 
+              if(comArr[l][1] > 40) { 
                 rateArray.push([comArr[l][0], comArr[l][1], comArr[l][2], comArr[l][3]]);
               }
             }
           }
           movSort();
-
-          console.log(rateArray);
           
-          //var compArr = [];
           $.each(rateArray, function(index, value) {
             for (n = 0; n < rateArray[index][2].length; n++) {
               if (rateArray[index][2][n].dateTime < sixtyComp && rateArray[index][2][n].dateTime > prevComp) {
                 var fixDate = rateArray[index][2][n].dateTime;
                 dateConvert(fixDate);
-                var target = document.getElementById("result_one");
+                var target = document.getElementById("result_two");
                   var iDiv = document.createElement("div");
-                  iDiv.innerHTML = " ";
+                  //iDiv.innerHTML = " ";
                   iDiv.id = n;
                   iDiv.innerHTML = "<a href='" + rateArray[index][3] + "'>" + rateArray[index][0] + "</a>" + "," + " " + "rating:" + " " + rateArray[index][1] + "," + " " + "theatre:" + " " + rateArray[index][2][n].theatre.name + "," + " " + "showtime:" + " " + complDate;
                   target.appendChild(iDiv);
@@ -217,6 +213,7 @@ function twoHour() {
                 dateConvert(fixDate);
                 var target = document.getElementById("result_one");
                   var iDiv = document.createElement("div");
+                  iDiv.innerHTML = " ";
                   iDiv.id = n;
                   iDiv.innerHTML = "<a href='" + rateArray[index][3] + "'>" + rateArray[index][0] + "</a>" + "," + " " + "rating:" + " " + rateArray[index][1] + "," + " " + "theatre:" + " " + rateArray[index][2][n].theatre.name + "," + " " + "showtime:" + " " + complDate;
                   target.appendChild(iDiv);

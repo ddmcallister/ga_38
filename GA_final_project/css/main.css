@@ -22,8 +22,8 @@ body {
 }
 
 #about_body {
-margin-left: 4em;
-margin-right: 4em;
+	margin-left: 4em;
+	margin-right: 4em;
 }
 
 #wImg {
@@ -71,10 +71,10 @@ h2 #main_subhead {
 }
 
 p {
-font-size: 1.5em;
-line-height: 1.5em;
-text-align: center;
-margin-bottom: 1.7em;
+	font-size: 1.5em;
+	line-height: 1.5em;
+	text-align: center;
+	margin-bottom: 1.7em;
 }
 
 .about_highlights {
@@ -125,7 +125,6 @@ img {
 	cursor: pointer;
 	width: 25%;
 	height: 5em;
-	/*change width at smaller screen sizes, becomes too tall to accomodate sub*/
 	text-align: center;
 	vertical-align: middle;
 	margin-top: 1em;
@@ -150,8 +149,6 @@ img {
 }
 
 .times:hover .lead span {
-	/*margin: 0;
-	color: white;*/
 	display: none;
 }
 
@@ -159,6 +156,7 @@ img {
 .times:hover .sub {
 	color: rgb(200,200,200);
 	opacity: 1;
+	font-weight: 500;
 }
 
 
@@ -190,3 +188,31 @@ img {
 #aboutLink {
 	margin-bottom: 3em;
 }
+
+@media (max-width: 560px) {
+
+	body {
+		margin-top: 1em;
+	}
+
+	h1 {
+		display: block;
+		margin-bottom: .5em;
+	}
+
+	.times {
+		padding: 0;
+		margin-top: .25em;
+		width: 30%;
+	}
+
+	#main_subhead {
+	vertical-align: text-top;
+	margin-top: 0;
+	margin-left: 0;
+	margin-bottom: .5em;
+	text-align: center
+}
+}
+
+

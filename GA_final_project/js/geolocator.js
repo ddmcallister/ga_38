@@ -1,3 +1,15 @@
+
+var name;
+function testFunction() {
+name = "mikey";
+return name;
+}
+console.log(name);
+
+var newName = testFunction();
+console.log(newName);
+
+
 /*if ("geolocation" in navigator) {
   console.log("geolocation is available");
   } else {
