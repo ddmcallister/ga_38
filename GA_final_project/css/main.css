@@ -31,14 +31,15 @@ h2 #main_subhead {
 h3 {
 	font-size: 2em;
 	text-align: center;
-   font-weight: 300;
+    font-weight: 300;
+    margin-top: 0;
 }
 
 p {
 	font-size: 1.5em;
 	line-height: 1.5em;
 	text-align: center;
-	margin-bottom: 1.7em;
+	margin-bottom: .7em;
 	margin-top: 0;
 }
 
@@ -85,6 +86,9 @@ img {
 
 #aboutLink {
 	margin-bottom: 3em;
+	font-size: 1.25em;
+	margin-left: 1em;
+	margin-top: 2em;
 }
 
 #about_head {
@@ -108,13 +112,15 @@ img {
 .lead {
 	font-size: 1.5em;
 	margin: .5em 0 0 0;
+	color: black;
 }
 
 .sub {
-	font-size: 1em;
+	font-size: 1.5em;
 	margin: 0;
-	font-style: italic;
 	opacity: 0;
+	font-weight: 100;
+	padding: .3em;
 }
 
 .times {
@@ -133,45 +139,27 @@ img {
   	background: linear-gradient(white, white 50%, rgb(232,0,0) 50%, rgb(232,0,0));
   	background-size: 100% 202%;
   	-webkit-transition: all 0.2s ease;
-  	-webkit-animation: down-bump 0.4s ease;
 }
 
 .times:hover {
 	border: 0px;	
-  background-position: 100% 100%;
-  -webkit-animation: up-bump 0.7s ease;
+  	background-position: 100% 100%;
 }
 
 .times:hover .lead {
 	margin: 0;
 	color: white;
-}
-
-.times:hover .lead span {
 	display: none;
 }
 
 .times:hover .sub {
-	color: rgb(200,200,200);
+	color: rgb(192,192,192);
 	opacity: 1;
-	font-weight: 500;
-}
-
-@-webkit-keyframes up-bump {
-  0% { padding-top: 1em; }
-  50% { padding-top: .5em; }
-  100% { padding-top: 1em; }
-}
-
-@-webkit-keyframes down-bump {
-  0% { padding-top: 1em; }
-  50% { padding-top: 1.5em; }
-  100% { padding-top: 1em; }
 }
 
 .res_container {
-  width: 75%;
-  margin: 0 auto;
+	width: 75%;
+	margin: 0 auto;
 }
 
 .movies {
@@ -197,7 +185,19 @@ img {
 }
 
 .about_highlights {
-	color: rgb(232,0,0);
+	font-family: 'Shadows Into Light', Arial, sans-serif;
+	letter-spacing: .1em;
+	font-weight: 600;
+}
+
+@media (min-width: 561px) and (max-width: 850px) {
+	.sub {
+		font-size: 1.1em;
+		margin: 0;
+		opacity: 0;
+		font-weight: 100;
+		padding: .3em;
+	}
 }
 
 @media (max-width: 560px) {
@@ -212,11 +212,11 @@ img {
 	}
 
 	#main_subhead {
-	vertical-align: text-top;
-	margin-top: 0;
-	margin-left: 0;
-	margin-bottom: .5em;
-	text-align: center
+		vertical-align: text-top;
+		margin-top: 0;
+		margin-left: 0;
+		margin-bottom: .5em;
+		text-align: center;
 	}
 
 	.times {
@@ -225,11 +225,30 @@ img {
 		width: 30%;
 	}
 
-	.res_container {
-	  width: 75%;
-	  margin: 0 auto;
+	.lead {
+		font-size: 1.25em;
+		margin: .5em 0 0 0;
+		color: black;
 	}
 
+	.sub {
+		font-size: 1em;
+		padding: .4em;
+		opacity: 0;
+		font-weight: 100;
+	}
+
+	.res_container {
+		width: 75%;
+		margin: 0 auto;
+	}
+
+	.liveMovies {
+		font-size: 1em;
+		text-align: left;
+		line-height: 1em;
+		margin-bottom: .5em;
+	}
 }
 
 

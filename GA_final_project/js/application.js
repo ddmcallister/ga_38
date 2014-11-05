@@ -74,8 +74,9 @@ function changeTime(minutes) {
 }
 
 var thirtyComp = changeTime(30);
-console.log(thirtyComp);
+var thirtyPrevComp = changeTime(15);
 var sixtyComp = changeTime(60);
+var sixtyPrevComp = changeTime(45);
 var twoHrComp = changeTime(120);
 var prevComp = changeTime(-15);
 
@@ -110,7 +111,6 @@ function successFun(data) {
 var complDate = 0;
 function dateConvert (timeBase) {
   var twentyFour = timeBase.slice(11,13);
-  console.log(twentyFour);
   var mins = timeBase.slice(14, 16);
   var dd = "AM";
   var twelveHr;
@@ -119,6 +119,9 @@ function dateConvert (timeBase) {
       twelveHr = twentyFour - 12;
       dd = "PM";
       }
+    if (twentyFour < 12) {
+      twelveHr = twentyFour;
+    }
     if (twentyFour == 12) {
       twelveHr = 12;
       dd = "PM";
@@ -137,16 +140,20 @@ function halfHour() {
   var target = document.getElementById("result_one");
   target.innerHTML = " "; 
 
-  //combining
+  //combining, 'else if' covers movies shortened to 1st word (e.g. "Birdman")
   var combArr = [];
-    for(j = 0; j < rtMovs.length; j++) {
-      for(i = 0; i < gnMovs.length; i++) {
-        if (gnMovs[i][0] == rtMovs[j].title) {
-          combArr.push([rtMovs[j].title, rtMovs[j].ratings.critics_score, gnMovs[i][1], rtMovs[j].links.alternate]);
-        }  
+  for(j = 0; j < rtMovs.length; j++) {
+    for(i = 0; i < gnMovs.length; i++) {
+      var regExA = gnMovs[i][0].match(/^.+\s?/);
+      var regExB = gnMovs[i][0].match(/^\w+\b/);
+      if (regExA == rtMovs[j].title) {
+        combArr.push([rtMovs[j].title, rtMovs[j].ratings.critics_score, gnMovs[i][1], rtMovs[j].links.alternate]);
+      } else if (regExB == rtMovs[j].title) {
+        combArr.push([rtMovs[j].title, rtMovs[j].ratings.critics_score, gnMovs[i][1], rtMovs[j].links.alternate]);
       }
     }
-
+  }
+  
   //eliminating low-rating movies
   var rateArray = [];
     for (l = 0; l < combArr.length; l++) {
@@ -179,16 +186,20 @@ function hour() {
 
   var target = document.getElementById("result_one");
   target.innerHTML = " ";
-  
+
   var combArr = [];
-    for(j = 0; j < rtMovs.length; j++) {
-      for(i = 0; i < gnMovs.length; i++) {
-        if (gnMovs[i][0] == rtMovs[j].title) {
-          combArr.push([rtMovs[j].title, rtMovs[j].ratings.critics_score, gnMovs[i][1], rtMovs[j].links.alternate]);
-        }  
+  for(j = 0; j < rtMovs.length; j++) {
+    for(i = 0; i < gnMovs.length; i++) {
+      var regExA = gnMovs[i][0].match(/^.+\s?/);
+      var regExB = gnMovs[i][0].match(/^\w+\b/);
+      if (regExA == rtMovs[j].title) {
+        combArr.push([rtMovs[j].title, rtMovs[j].ratings.critics_score, gnMovs[i][1], rtMovs[j].links.alternate]);
+      } else if (regExB == rtMovs[j].title) {
+        combArr.push([rtMovs[j].title, rtMovs[j].ratings.critics_score, gnMovs[i][1], rtMovs[j].links.alternate]);
       }
     }
-
+  }
+  
   var rateArray = [];
     for (l = 0; l < combArr.length; l++) {
       if(combArr[l][1] > 75) { 
@@ -200,7 +211,7 @@ function hour() {
 
   $.each(dupElim, function(index, value) {
     for (n = 0; n < dupElim[index][2].length; n++) {
-      if (dupElim[index][2][n].dateTime < sixtyComp && dupElim[index][2][n].dateTime > prevComp) {
+      if (dupElim[index][2][n].dateTime < sixtyComp && dupElim[index][2][n].dateTime > thirtyPrevComp) {
         var fixDate = dupElim[index][2][n].dateTime;
         dateConvert(fixDate);
         var target = document.getElementById("result_one");
@@ -220,14 +231,18 @@ function twoHour() {
   target.innerHTML = " ";
 
   var combArr = [];
-    for(j = 0; j < rtMovs.length; j++) {
-      for(i = 0; i < gnMovs.length; i++) {
-        if (gnMovs[i][0] == rtMovs[j].title) {
-          combArr.push([rtMovs[j].title, rtMovs[j].ratings.critics_score, gnMovs[i][1], rtMovs[j].links.alternate]);
-        }  
+  for(j = 0; j < rtMovs.length; j++) {
+    for(i = 0; i < gnMovs.length; i++) {
+      var regExA = gnMovs[i][0].match(/^.+\s?/);
+      var regExB = gnMovs[i][0].match(/^\w+\b/);
+      if (regExA == rtMovs[j].title) {
+        combArr.push([rtMovs[j].title, rtMovs[j].ratings.critics_score, gnMovs[i][1], rtMovs[j].links.alternate]);
+      } else if (regExB == rtMovs[j].title) {
+        combArr.push([rtMovs[j].title, rtMovs[j].ratings.critics_score, gnMovs[i][1], rtMovs[j].links.alternate]);
       }
     }
-
+  }
+  
   var rateArray = [];
     for (l = 0; l < combArr.length; l++) {
       if(combArr[l][1] > 75) { 
@@ -239,7 +254,7 @@ function twoHour() {
 
   $.each(dupElim, function(index, value) {
     for (n = 0; n < dupElim[index][2].length; n++) {
-      if (dupElim[index][2][n].dateTime < twoHrComp && dupElim[index][2][n].dateTime > prevComp) {
+      if (dupElim[index][2][n].dateTime < twoHrComp && dupElim[index][2][n].dateTime > sixtyPrevComp) {
         var fixDate = dupElim[index][2][n].dateTime;
         dateConvert(fixDate);
         var iDiv = document.createElement("div");
