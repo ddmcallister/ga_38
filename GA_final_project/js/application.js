@@ -34,7 +34,7 @@ var dateInc = "http://data.tmsapi.com/v1/movies/showings?startDate=" + keyDateSt
 
 //gracenote
 function outsideGeo(myLoc) {
-  var urlDate = dateInc + myLoc + "&radius=2&api_key=sjesnpx2uhtyac5frfhzfedb";
+  var urlDate = dateInc + myLoc + "&radius=5&api_key=sjesnpx2uhtyac5frfhzfedb";
   if (Boolean(myLoc) === true) {
      $(document).ready(function(){
      }); 
@@ -134,14 +134,9 @@ function dateConvert (timeBase) {
   normHr();
 }
 
-function halfHour() { 
-
-  //clearing results in case button already clicked
-  var target = document.getElementById("result_one");
-  target.innerHTML = " "; 
-
-  //combining, 'else if' covers movies shortened to 1st word (e.g. "Birdman")
-  var combArr = [];
+//combining, 'else if' covers movies shortened to 1st word (e.g. "Birdman")
+var combArr = [];
+function bothArr(){
   for(j = 0; j < rtMovs.length; j++) {
     for(i = 0; i < gnMovs.length; i++) {
       var regExA = gnMovs[i][0].match(/^.+\s?/);
@@ -153,14 +148,72 @@ function halfHour() {
       }
     }
   }
-  
-  //eliminating low-rating movies
+}
+
+//setting rating parameters
+
+function setRate(number) {
   var rateArray = [];
-    for (l = 0; l < combArr.length; l++) {
-      if(combArr[l][1] > 75) { 
-          rateArray.push([combArr[l][0], combArr[l][1], combArr[l][2], combArr[l][3]]);
-        }      
+  for (l = 0; l < combArr.length; l++) {
+    if(combArr[l][1] > number) { 
+      rateArray.push([combArr[l][0], combArr[l][1], combArr[l][2], combArr[l][3]]);
+    }      
+  }
+  return rateArray;
+}
+
+function noDupes (dupyArr) {
+  var dupyArr = _.uniq(dupyArr, JSON.stringify);
+}
+
+var writeArr = [];
+var timesArray = [];
+
+function onPage() {
+  noDupes(rateArray);
+  console.log(rateArray);
+
+  $.each(rateArray, function(index, value) {
+        var target = document.getElementById("result_one");
+        var initDiv = document.createElement("div");
+        initDiv.className = "liveMovies";
+        var divTwo = document.createElement("div");
+        divTwo.innerHTML = "showtimes";
+
+    for (n = 0; n < rateArray[index][2].length; n++) {
+        if (rateArray[index][2][n].dateTime < twoHrComp && rateArray[index][2][n].dateTime > thirtyPrevComp) {
+          writeArr.push(rateArray[index][0]);
+          noDupes(writeArr);
+          //var dupElimTwo = _.uniq(writeArr, JSON.stringify);
+          var fixDate = rateArray[index][2][n].dateTime;
+          dateConvert(fixDate);
+          timesArray.push(complDate);
+
+          for (x=0; x<writeArr.length; x++) {
+            initDiv.innerHTML = "<a href='" + rateArray[index][3] + "'>" + writeArr[x] + "</a>" + " " + rateArray[index][1];
+            target.appendChild(initDiv);
+          }
+
+          initDiv.appendChild(divTwo);
+
+        for (h=0; h<timesArray.length; h++) {
+          var h = document.createElement("div");
+          h.innerHTML = rateArray[index][2][n].theatre.name + "," + complDate;
+            divTwo.appendChild(h);
+        } 
       }
+    }
+
+
+  });
+}
+
+function halfHour() { 
+  var target = document.getElementById("result_one");
+  target.innerHTML = " "; 
+
+  bothArr();
+  setRate(75);
 
   //eliminating duplicate results        
   var dupElim = _.uniq(rateArray, JSON.stringify);
@@ -187,25 +240,8 @@ function hour() {
   var target = document.getElementById("result_one");
   target.innerHTML = " ";
 
-  var combArr = [];
-  for(j = 0; j < rtMovs.length; j++) {
-    for(i = 0; i < gnMovs.length; i++) {
-      var regExA = gnMovs[i][0].match(/^.+\s?/);
-      var regExB = gnMovs[i][0].match(/^\w+\b/);
-      if (regExA == rtMovs[j].title) {
-        combArr.push([rtMovs[j].title, rtMovs[j].ratings.critics_score, gnMovs[i][1], rtMovs[j].links.alternate]);
-      } else if (regExB == rtMovs[j].title) {
-        combArr.push([rtMovs[j].title, rtMovs[j].ratings.critics_score, gnMovs[i][1], rtMovs[j].links.alternate]);
-      }
-    }
-  }
-  
-  var rateArray = [];
-    for (l = 0; l < combArr.length; l++) {
-      if(combArr[l][1] > 75) { 
-          rateArray.push([combArr[l][0], combArr[l][1], combArr[l][2], combArr[l][3]]);
-        }      
-      }
+  bothArr();
+  setRate(75);
 
   var dupElim = _.uniq(rateArray, JSON.stringify);
 
@@ -224,47 +260,56 @@ function hour() {
   });
 }
 
-
 function twoHour() {  
 
   var target = document.getElementById("result_one");
   target.innerHTML = " ";
 
-  var combArr = [];
-  for(j = 0; j < rtMovs.length; j++) {
-    for(i = 0; i < gnMovs.length; i++) {
-      var regExA = gnMovs[i][0].match(/^.+\s?/);
-      var regExB = gnMovs[i][0].match(/^\w+\b/);
-      if (regExA == rtMovs[j].title) {
-        combArr.push([rtMovs[j].title, rtMovs[j].ratings.critics_score, gnMovs[i][1], rtMovs[j].links.alternate]);
-      } else if (regExB == rtMovs[j].title) {
-        combArr.push([rtMovs[j].title, rtMovs[j].ratings.critics_score, gnMovs[i][1], rtMovs[j].links.alternate]);
-      }
-    }
-  }
-  
-  var rateArray = [];
-    for (l = 0; l < combArr.length; l++) {
-      if(combArr[l][1] > 75) { 
-          rateArray.push([combArr[l][0], combArr[l][1], combArr[l][2], combArr[l][3]]);
-        }      
-      }
+  bothArr();
+  setRate(75);
 
-  var dupElim = _.uniq(rateArray, JSON.stringify);
-
+  // var dupElim = _.uniq(rateArray, JSON.stringify);
+  onPage();
+         
+/*  var writeArr = [];
+  var timesArray = [];
+function onPage() {
   $.each(dupElim, function(index, value) {
+        var target = document.getElementById("result_one");
+        var initDiv = document.createElement("div");
+        initDiv.className = "liveMovies";
+        var divTwo = document.createElement("div");
+        divTwo.innerHTML = "showtimes";
     for (n = 0; n < dupElim[index][2].length; n++) {
-      if (dupElim[index][2][n].dateTime < twoHrComp && dupElim[index][2][n].dateTime > sixtyPrevComp) {
-        var fixDate = dupElim[index][2][n].dateTime;
-        dateConvert(fixDate);
-        var iDiv = document.createElement("div");
-        iDiv.className = "liveMovies";
-        iDiv.innerHTML = "<a href='" + dupElim[index][3] + "'>" + dupElim[index][0] + "</a>" + "," + " " + "rating:" + " " + dupElim[index][1] + "," + " " + "theatre:" + " " + dupElim[index][2][n].theatre.name + "," + " " + "showtime:" + " " + complDate;
-        target.appendChild(iDiv);
+        if (dupElim[index][2][n].dateTime < twoHrComp && dupElim[index][2][n].dateTime > thirtyPrevComp) {
+          writeArr.push(dupElim[index][0]);
+          var dupElimTwo = _.uniq(writeArr, JSON.stringify);
+          var fixDate = dupElim[index][2][n].dateTime;
+          console.log(fixDate);
+          dateConvert(fixDate);
+          timesArray.push(complDate);
+          console.log(timesArray);
+          for (x=0; x<dupElimTwo.length; x++) {
+            initDiv.innerHTML = "<a href='" + dupElim[index][3] + "'>" + dupElimTwo[x] + "</a>" + " " + dupElim[index][1];
+            target.appendChild(initDiv);
+          }
+          initDiv.appendChild(divTwo);     
+        for (h=0; h<timesArray.length; h++) {
+          var h = document.createElement("div");
+          h.innerHTML = dupElim[index][2][n].theatre.name + "," + complDate;
+            divTwo.appendChild(h);
+      }
       }
     }
+
   });
+}*/
 }
+
+function lowBrow() {
+
+
+ }
 
 
 
