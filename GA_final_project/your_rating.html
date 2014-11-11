@@ -10,34 +10,34 @@
 	</head>
 	<body>
 		<div id="main_header">
-			<h1>FILM</h1><img src="./img/big_dog.jpg"><h1 id="wImg">HUNTER</h1><h2 id="main_subhead">no carrion</h2>
+			<h1 class="you_rate_header">FILM <span id="yr_img">HUNTER</span></br>RETRIEVER</h1>
+			<div id ="alt_subhead">
+				<img id = "sit_dog" src="./img/sit_dog.jpg"><h2 id="you_rate_subhead">aiming to please</h2>
+			</div>
 		</div>
 		<div id="timeSelect">
 			<h3>What's Your Time Frame?</h3>
 				<div id="times_contain">
-					<div class="times" id="half_hour" onclick="halfHour()">
+					<div class="times" id="half_hour" onclick="yrPickHalfHour()">
 						<div class= "lead">Can't Hardly Wait!</div>
 						<div class = "sub">movies starting in the next half hour</div>
 					</div>
-					<div class="times" id = "hourdispl" onclick="hour()">
+					<div class="times" id = "hourdispl" onclick="yrPickHour()">
 						<div class= "lead">Coffee and Cigarettes</div>
 						<div class = "sub">movies starting in 30 minutes to an hour</div>
 					</div>
-					<div class="times" id = "two_hour" onclick="twoHour()">
+					<div class="times" id = "two_hour" onclick="yrPickTwoHour()">
 						<div class= "lead">Dinner with Andre</div>
 						<div class = "sub">movies starting in one to two hours</div>
 					</div>
 				</div>	
 		</div>	
 		<div class="res_container" >
-			<div class="movies" id="result_one">       </div>
-			<div class="movies" id="result_two"></div>
+			<div class="movies" id="yr_result_one">       </div>
+			<div class="movies" id="yr_result_two"></div>
 		</div>
-		<div id="aboutLink">
-			<a href="about.html">About Film Hunter</a>
-		</div>
-		<div id = "select_page">
-			<a href="your_rating.html">Good ratings? I'll watch anything!</a>
+		<div id = "back">
+			<a href="index.html">Take Me Back To Film Hunter!</a>
 		<div>
 
 	</body>

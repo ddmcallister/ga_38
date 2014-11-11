@@ -72,6 +72,16 @@ img {
 	background-size: contain;
 }
 
+#yr_img {
+	opacity: 1;
+	background-image: url(../img/ex.jpg);
+	background-repeat: no-repeat;	
+	background-position: center;
+	background-size: contain;
+	color: rgb(48, 48, 48);
+
+}
+
 #times_contain {
 	text-align: center;
 }
@@ -85,6 +95,20 @@ img {
 }
 
 #aboutLink {
+	margin-bottom: 3em;
+	font-size: 1.25em;
+	margin-left: 1em;
+	margin-top: 2em;
+}
+
+#select_page {
+	margin-bottom: 3em;
+	font-size: 1.25em;
+	margin-left: 1em;
+	margin-top: -2em;
+}
+
+#back {
 	margin-bottom: 3em;
 	font-size: 1.25em;
 	margin-left: 1em;
@@ -107,6 +131,40 @@ img {
 #about_body {
 	margin-left: 4em;
 	margin-right: 4em;
+}
+
+#aboutBack {
+	margin-bottom: 2em;
+	font-size: 1.25em;
+	margin-top: 4em;
+}
+
+#aboutRetrieve {
+	margin-bottom: 3em;
+	font-size: 1.25em;
+	margin-top: 0;
+}
+
+
+#sit_dog {
+	display: inline-block;
+
+}
+
+#you_rate_subhead {
+	display: inline-block;
+	font-size: 2em;
+}
+
+#alt_subhead {
+	display: block;
+	margin-bottom: 3em;
+}
+
+.you_rate_header {
+	font-size: 4em;
+	display: inline-block;
+	margin: 0;
 }
 
 .lead {
@@ -182,12 +240,6 @@ img {
 	font-size: 3em;
 	color: rgb(232,0,0);
 	margin-bottom: 0;
-}
-
-.about_highlights {
-	font-family: 'Shadows Into Light', Arial, sans-serif;
-	letter-spacing: .1em;
-	font-weight: 600;
 }
 
 @media (min-width: 561px) and (max-width: 850px) {

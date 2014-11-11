@@ -34,7 +34,7 @@ var dateInc = "http://data.tmsapi.com/v1/movies/showings?startDate=" + keyDateSt
 
 //gracenote
 function outsideGeo(myLoc) {
-  var urlDate = dateInc + myLoc + "&radius=5&api_key=sjesnpx2uhtyac5frfhzfedb";
+  var urlDate = dateInc + myLoc + "&radius=3&api_key=sjesnpx2uhtyac5frfhzfedb";
   if (Boolean(myLoc) === true) {
      $(document).ready(function(){
      }); 
@@ -60,6 +60,7 @@ function successGn(data) {
     gnMovs.push([movTimesArray[q].title, movTimesArray[q].showtimes]);
     }
   }
+  console.log(gnMovs);
 
 //to get date for comparisons
 var zoneSet = new Date();
@@ -106,7 +107,7 @@ var rtMovs = [];
 function successFun(data) {
   rtMovs.push.apply(rtMovs, data["movies"]);
 }
-
+console.log(rtMovs);
 //date format modifier for display
 var complDate = 0;
 function dateConvert (timeBase) {
@@ -151,165 +152,152 @@ function bothArr(){
 }
 
 //setting rating parameters
-
+var rateArray = [];
 function setRate(number) {
-  var rateArray = [];
   for (l = 0; l < combArr.length; l++) {
     if(combArr[l][1] > number) { 
       rateArray.push([combArr[l][0], combArr[l][1], combArr[l][2], combArr[l][3]]);
     }      
   }
-  return rateArray;
 }
 
-function noDupes (dupyArr) {
-  var dupyArr = _.uniq(dupyArr, JSON.stringify);
-}
+//establishing time, getting results on page
 
-var writeArr = [];
-var timesArray = [];
+function onPage(timeOne, timeTwo) {
 
-function onPage() {
-  noDupes(rateArray);
-  console.log(rateArray);
+  var dupElim = _.uniq(rateArray, JSON.stringify);
 
-  $.each(rateArray, function(index, value) {
-        var target = document.getElementById("result_one");
-        var initDiv = document.createElement("div");
-        initDiv.className = "liveMovies";
-        var divTwo = document.createElement("div");
-        divTwo.innerHTML = "showtimes";
+  var writeArr = [];
+  var timesArray = [];
 
-    for (n = 0; n < rateArray[index][2].length; n++) {
-        if (rateArray[index][2][n].dateTime < twoHrComp && rateArray[index][2][n].dateTime > thirtyPrevComp) {
-          writeArr.push(rateArray[index][0]);
-          noDupes(writeArr);
-          //var dupElimTwo = _.uniq(writeArr, JSON.stringify);
-          var fixDate = rateArray[index][2][n].dateTime;
-          dateConvert(fixDate);
-          timesArray.push(complDate);
-
-          for (x=0; x<writeArr.length; x++) {
-            initDiv.innerHTML = "<a href='" + rateArray[index][3] + "'>" + writeArr[x] + "</a>" + " " + rateArray[index][1];
-            target.appendChild(initDiv);
-          }
-
-          initDiv.appendChild(divTwo);
-
+  $.each(dupElim, function(index, value) {
+    var target = document.getElementById("result_one");
+    var initDiv = document.createElement("div");
+    initDiv.className = "liveMovies";
+    var divTwo = document.createElement("div");
+    divTwo.innerHTML = "";
+    for (n = 0; n < dupElim[index][2].length; n++) {
+      if (dupElim[index][2][n].dateTime < timeOne && dupElim[index][2][n].dateTime > timeTwo) {
+        writeArr.push(dupElim[index][0]);
+        var dupElimTwo = _.uniq(writeArr, JSON.stringify);
+        var fixDate = dupElim[index][2][n].dateTime;
+        dateConvert(fixDate);
+        timesArray.push(complDate);
+        for (x=0; x<dupElimTwo.length; x++) {
+          initDiv.innerHTML = "<a href='" + dupElim[index][3] + "'>" + dupElimTwo[x] + "</a>" + " " + dupElim[index][1];
+          target.appendChild(initDiv);
+        }
+        initDiv.appendChild(divTwo);     
         for (h=0; h<timesArray.length; h++) {
           var h = document.createElement("div");
-          h.innerHTML = rateArray[index][2][n].theatre.name + "," + complDate;
-            divTwo.appendChild(h);
-        } 
+          h.innerHTML = dupElim[index][2][n].theatre.name + "," + " " + complDate;
+          divTwo.appendChild(h);
+        }
       }
     }
-
-
   });
 }
 
 function halfHour() { 
   var target = document.getElementById("result_one");
-  target.innerHTML = " "; 
-
+  if (target.innerHTML != "") {
+    target.innerHTML = "";
+  }
   bothArr();
   setRate(75);
-
-  //eliminating duplicate results        
-  var dupElim = _.uniq(rateArray, JSON.stringify);
-
-  //writing to page
-  $.each(dupElim, function(index, value) {
-    for (n = 0; n < dupElim[index][2].length; n++) {
-      if (dupElim[index][2][n].dateTime < thirtyComp && dupElim[index][2][n].dateTime > prevComp) {
-        var fixDate = dupElim[index][2][n].dateTime;
-        dateConvert(fixDate);
-        var target = document.getElementById("result_one");
-        var iDiv = document.createElement("div");
-        iDiv.className = "liveMovies";
-        iDiv.innerHTML = "<a href='" + dupElim[index][3] + "'>" + dupElim[index][0] + "</a>" + "," + " " + "rating:" + " " + dupElim[index][1] + "," + " " + "theatre:" + " " + dupElim[index][2][n].theatre.name + "," + " " + "showtime:" + " " + complDate;
-        target.appendChild(iDiv);
-      }
-    }
-  });
+  onPage(thirtyComp, prevComp);
 }
 
-//repeating for other time selections
 function hour() {  
-
   var target = document.getElementById("result_one");
-  target.innerHTML = " ";
-
+  if (target.innerHTML != "") {
+    target.innerHTML = "";
+  }
   bothArr();
   setRate(75);
-
-  var dupElim = _.uniq(rateArray, JSON.stringify);
-
-  $.each(dupElim, function(index, value) {
-    for (n = 0; n < dupElim[index][2].length; n++) {
-      if (dupElim[index][2][n].dateTime < sixtyComp && dupElim[index][2][n].dateTime > thirtyPrevComp) {
-        var fixDate = dupElim[index][2][n].dateTime;
-        dateConvert(fixDate);
-        var target = document.getElementById("result_one");
-        var iDiv = document.createElement("div");
-        iDiv.className = "liveMovies";
-        iDiv.innerHTML = "<a href='" + dupElim[index][3] + "'>" + dupElim[index][0] + "</a>" + "," + " " + "rating:" + " " + dupElim[index][1] + "," + " " + "theatre:" + " " + dupElim[index][2][n].theatre.name + "," + " " + "showtime:" + " " + complDate;
-        target.appendChild(iDiv);
-      }
-    }
-  });
+  onPage(sixtyComp, thirtyPrevComp);
 }
 
 function twoHour() {  
-
   var target = document.getElementById("result_one");
-  target.innerHTML = " ";
-
+  if (target.innerHTML != "") {
+    target.innerHTML = "";
+  }
   bothArr();
   setRate(75);
-
-  // var dupElim = _.uniq(rateArray, JSON.stringify);
-  onPage();
-         
-/*  var writeArr = [];
-  var timesArray = [];
-function onPage() {
-  $.each(dupElim, function(index, value) {
-        var target = document.getElementById("result_one");
-        var initDiv = document.createElement("div");
-        initDiv.className = "liveMovies";
-        var divTwo = document.createElement("div");
-        divTwo.innerHTML = "showtimes";
-    for (n = 0; n < dupElim[index][2].length; n++) {
-        if (dupElim[index][2][n].dateTime < twoHrComp && dupElim[index][2][n].dateTime > thirtyPrevComp) {
-          writeArr.push(dupElim[index][0]);
-          var dupElimTwo = _.uniq(writeArr, JSON.stringify);
-          var fixDate = dupElim[index][2][n].dateTime;
-          console.log(fixDate);
-          dateConvert(fixDate);
-          timesArray.push(complDate);
-          console.log(timesArray);
-          for (x=0; x<dupElimTwo.length; x++) {
-            initDiv.innerHTML = "<a href='" + dupElim[index][3] + "'>" + dupElimTwo[x] + "</a>" + " " + dupElim[index][1];
-            target.appendChild(initDiv);
-          }
-          initDiv.appendChild(divTwo);     
-        for (h=0; h<timesArray.length; h++) {
-          var h = document.createElement("div");
-          h.innerHTML = dupElim[index][2][n].theatre.name + "," + complDate;
-            divTwo.appendChild(h);
-      }
-      }
-    }
-
-  });
-}*/
+  onPage(twoHrComp, sixtyPrevComp);        
 }
 
-function lowBrow() {
+function yrOnPage(timeOne, timeTwo) {
 
+  var dupElim = _.uniq(rateArray, JSON.stringify);
 
- }
+  var writeArr = [];
+  var timesArray = [];
+
+  $.each(dupElim, function(index, value) {
+    var target = document.getElementById("yr_result_one");
+    var yrInitDiv = document.createElement("div");
+    yrInitDiv.className = "liveMovies";
+    var yrDivTwo = document.createElement("div");
+    yrDivTwo.innerHTML = "";
+    for (n = 0; n < dupElim[index][2].length; n++) {
+      if (dupElim[index][2][n].dateTime < timeOne && dupElim[index][2][n].dateTime > timeTwo) {
+        writeArr.push(dupElim[index][0]);
+        var dupElimTwo = _.uniq(writeArr, JSON.stringify);
+        var fixDate = dupElim[index][2][n].dateTime;
+        dateConvert(fixDate);
+        timesArray.push(complDate);
+        for (x=0; x<dupElimTwo.length; x++) {
+          yrInitDiv.innerHTML = "<a href='" + dupElim[index][3] + "'>" + dupElimTwo[x] + "</a>" + " " + dupElim[index][1];
+          target.appendChild(yrInitDiv);
+        }
+        yrInitDiv.appendChild(yrDivTwo);     
+        for (h=0; h<timesArray.length; h++) {
+          var h = document.createElement("div");
+          h.innerHTML = dupElim[index][2][n].theatre.name + "," + " " + complDate;
+          yrDivTwo.appendChild(h);
+        }
+      }
+    }
+  });
+}
+
+function userPick () {
+  rateArray =[]; 
+  var userNum = prompt("Choose a minimum rating (1-74)");
+  setRate(userNum);
+}
+
+function yrPickHalfHour() {
+  var target = document.getElementById("yr_result_one");
+  if (target.innerHTML != "") {
+    target.innerHTML = "";
+  }
+  bothArr();
+  userPick();
+  yrOnPage(thirtyComp, prevComp);
+}
+
+function yrPickHour() {
+  var target = document.getElementById("yr_result_one");
+  if (target.innerHTML != "") {
+    target.innerHTML = "";
+  }
+  bothArr();
+  userPick();
+  yrOnPage(sixtyComp, thirtyPrevComp);
+}
+
+function yrPickTwoHour() {
+  var target = document.getElementById("yr_result_one");
+  if (target.innerHTML != "") {
+    target.innerHTML = "";
+  }
+  bothArr();
+  userPick();
+  yrOnPage(twoHrComp, sixtyPrevComp);
+}
 
 
 
